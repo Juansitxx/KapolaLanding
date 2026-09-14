@@ -1,6 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 
-import feria from "@/public/images/feria-entrega.jpg";
+import feria from "@/public/images/feria-stand.jpg";
 import memeUno from "@/public/images/meme-uno.jpg";
 import colombia from "@/public/images/a-que-sabe-colombia.jpg";
 import memePerro from "@/public/images/meme-perro.jpg";
@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 type Tile = { src: StaticImageData; alt: string; caption: string };
 
 const tiles: Tile[] = [
-  { src: feria, alt: "Entregando un pedido a una clienta en una feria", caption: "En ferias" },
+  { src: feria, alt: "Stand de Kapola en la feria Mujeres que abren caminos", caption: "En ferias" },
   { src: memeUno, alt: "Meme de cartas UNO +2 con galletas Kapola", caption: "Memes" },
   { src: colombia, alt: "La mascota de Kapola con la bandera de Colombia", caption: "Nuestra mascota" },
   { src: memePerro, alt: "Meme de un bulldog francés pensando en galletas", caption: "Antojos" },
