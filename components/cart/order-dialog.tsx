@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
-import { Bike, Trash2 } from "lucide-react";
+import { Bike, Gift, Trash2 } from "lucide-react";
 
 import mascota from "@/public/images/mascota.png";
 import {
@@ -23,6 +23,8 @@ import { useShopStatus } from "@/components/open-status";
 import { buildOrderMessage, formatCOP, whatsappUrl } from "@/lib/site";
 import { statusText } from "@/lib/schedule";
 
+const CARD_MAX = 200;
+
 export function OrderDialog({
   open,
   onOpenChange,
@@ -35,8 +37,12 @@ export function OrderDialog({
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [sent, setSent] = useState(false);
+  const [wantsCard, setWantsCard] = useState(false);
+  const [card, setCard] = useState({ to: "", from: "", message: "" });
 
   const empty = lines.length === 0;
+  const cardProduct = lines.find((l) => l.product.giftCard)?.product;
+  const includeCard = Boolean(cardProduct) && wantsCard;
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -45,6 +51,9 @@ export function OrderDialog({
       lines.map((l) => ({ name: l.product.name, quantity: l.quantity, price: l.product.price })),
       name.trim(),
       address.trim(),
+      includeCard
+        ? { to: card.to.trim(), from: card.from.trim(), message: card.message.trim() }
+        : undefined,
     );
     window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
     setSent(true);
@@ -168,6 +177,90 @@ export function OrderDialog({
               className="h-12 rounded-2xl border-2 bg-white px-4 text-base"
             />
           </div>
+
+          {cardProduct && (
+            <div className="rounded-2xl border-2 border-dashed border-bubblegum-soft bg-white px-4 py-3">
+              <label className="flex cursor-pointer items-start gap-3">
+                <input
+                  type="checkbox"
+                  checked={wantsCard}
+                  onChange={(e) => setWantsCard(e.target.checked)}
+                  className="mt-0.5 size-5 shrink-0 accent-bubblegum"
+                />
+                <span>
+                  <span className="flex items-center gap-1.5 font-extrabold text-choco">
+                    <Gift className="size-4 text-bubblegum" aria-hidden="true" />
+                    ¿Es un regalo? Agrega una tarjeta
+                  </span>
+                  <span className="block text-sm text-choco-soft">
+                    Gratis con tu {cardProduct.name}. Va con tu mensaje en la tarjeta.
+                  </span>
+                </span>
+              </label>
+
+              <AnimatePresence initial={false}>
+                {wantsCard && (
+                  <m.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="grid gap-3 pt-4 pb-1">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="grid gap-1.5">
+                          <Label htmlFor="card-to" className="font-extrabold text-choco">
+                            Para
+                          </Label>
+                          <Input
+                            id="card-to"
+                            required
+                            maxLength={40}
+                            value={card.to}
+                            onChange={(e) => setCard((c) => ({ ...c, to: e.target.value }))}
+                            placeholder="Mamá"
+                            className="h-11 rounded-2xl border-2 bg-white px-3 text-base"
+                          />
+                        </div>
+                        <div className="grid gap-1.5">
+                          <Label htmlFor="card-from" className="font-extrabold text-choco">
+                            De <span className="font-normal text-choco-soft">(opcional)</span>
+                          </Label>
+                          <Input
+                            id="card-from"
+                            maxLength={40}
+                            value={card.from}
+                            onChange={(e) => setCard((c) => ({ ...c, from: e.target.value }))}
+                            placeholder="Tu nombre"
+                            className="h-11 rounded-2xl border-2 bg-white px-3 text-base"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid gap-1.5">
+                        <Label htmlFor="card-message" className="font-extrabold text-choco">
+                          Mensaje
+                        </Label>
+                        <textarea
+                          id="card-message"
+                          required
+                          maxLength={CARD_MAX}
+                          rows={3}
+                          value={card.message}
+                          onChange={(e) => setCard((c) => ({ ...c, message: e.target.value }))}
+                          placeholder="¡Feliz cumple! Para la mejor mamá, unas deliciosas galletas"
+                          className="w-full resize-none rounded-2xl border-2 border-input bg-white px-3 py-2 text-base outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                        />
+                        <span className="text-right text-xs text-choco-soft" aria-live="polite">
+                          {card.message.length}/{CARD_MAX}
+                        </span>
+                      </div>
+                    </div>
+                  </m.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
 
           <p className="flex gap-2 rounded-2xl bg-cream px-4 py-3 text-sm text-choco">
             <Bike className="mt-0.5 size-4 shrink-0 text-bubblegum-deep" aria-hidden="true" />
