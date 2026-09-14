@@ -15,12 +15,12 @@ export function formatCOP(value: number) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
 }
 
-// api.whatsapp.com directo: la redirección de wa.me corrompe los emojis en algunos dispositivos
+// Sin emojis en los mensajes: WhatsApp los muestra como "?" en algunos dispositivos
 export function whatsappUrl(text: string) {
   return `https://api.whatsapp.com/send?phone=${site.whatsappNumber}&text=${encodeURIComponent(text)}`;
 }
 
-export const greetingWhatsappUrl = whatsappUrl("¡Hola Kapola! Quiero hacer un pedido 🍪");
+export const greetingWhatsappUrl = whatsappUrl("¡Hola Kapola! Quiero hacer un pedido");
 
 export type OrderLine = { name: string; quantity: number; price: number };
 
@@ -46,7 +46,7 @@ export function buildOrderMessage(
       ]
     : [];
   return [
-    "¡Hola Kapola! 🍪 Quiero hacer este pedido:",
+    "¡Hola Kapola! Quiero hacer este pedido:",
     ...items,
     `Total: ${formatCOP(total)}`,
     ...card,
