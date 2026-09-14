@@ -7,6 +7,7 @@ import { OpenStatus } from "@/components/open-status";
 import { Reveal } from "@/components/reveal";
 import { socials } from "@/components/social-links";
 import { greetingWhatsappUrl, site } from "@/lib/site";
+import { TrackedLink } from "@/components/tracked-link";
 
 const info = [
   {
@@ -58,7 +59,9 @@ export function Contact() {
           <OpenStatus className="mt-6" />
 
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
-            <a
+            <TrackedLink
+              event="whatsapp_click"
+              source="contacto"
               href={greetingWhatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -66,7 +69,7 @@ export function Contact() {
             >
               <WhatsAppIcon className="size-6" />
               {site.whatsappDisplay}
-            </a>
+            </TrackedLink>
             <ul className="flex items-center gap-3">
               {socials.map(({ label, href, Icon }) => (
                 <li key={href}>
@@ -91,14 +94,14 @@ export function Contact() {
         <Reveal delay={0.08}>
           <dl className="divide-y-2 divide-dashed divide-bubblegum-soft/40 rounded-[2rem] border-[3px] border-white bg-background px-5 shadow-pop sm:px-8">
             {info.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="flex gap-4 py-5 sm:gap-5 sm:py-6">
-                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-cream text-bubblegum-deep">
-                  <Icon className="size-6" aria-hidden="true" />
-                </span>
-                <div>
-                  <dt className="text-lg font-black text-choco">{title}</dt>
-                  <dd className="mt-1 text-choco-soft">{text}</dd>
-                </div>
+              <div key={title} className="relative py-5 pl-16 sm:py-6 sm:pl-[4.25rem]">
+                <dt className="text-lg font-black text-choco">
+                  <span className="absolute top-5 left-0 grid size-12 place-items-center rounded-2xl bg-cream text-bubblegum-deep sm:top-6">
+                    <Icon className="size-6" aria-hidden="true" />
+                  </span>
+                  {title}
+                </dt>
+                <dd className="mt-1 text-choco-soft">{text}</dd>
               </div>
             ))}
           </dl>
