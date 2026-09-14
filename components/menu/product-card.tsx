@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
@@ -12,16 +12,34 @@ import { formatCOP } from "@/lib/site";
 import { MAX_QTY, useCart } from "@/components/cart/cart-provider";
 import { QuantityStepper } from "@/components/quantity-stepper";
 
-export function ProductCard({ product }: { product: Product }) {
-  const { add } = useCart();
-  const [qty, setQty] = useState(1);
-  const [justAdded, setJustAdded] = useState(false);
+const swap = {
+  initial: { opacity: 0, transform: "scale(0.96)", filter: "blur(2px)" },
+  animate: { opacity: 1, transform: "scale(1)", filter: "blur(0px)" },
+  exit: { opacity: 0, transform: "scale(0.96)", filter: "blur(2px)" },
+  transition: { duration: 0.2, ease: [0.23, 1, 0.32, 1] as const },
+};
 
+export function ProductCard({ product }: { product: Product }) {
+  const { lines, add, setQuantity } = useCart();
+  const inCartQty = lines.find((l) => l.product.id === product.id)?.quantity ?? 0;
+  const inCart = inCartQty > 0;
+  const actionsRef = useRef<HTMLDivElement>(null);
+  const prevInCart = useRef(inCart);
+
+  // El control cambia de botón a contador: se mueve el foco para no perderlo al teclado
   useEffect(() => {
-    if (!justAdded) return;
-    const t = setTimeout(() => setJustAdded(false), 1400);
-    return () => clearTimeout(t);
-  }, [justAdded]);
+    if (prevInCart.current === inCart) return;
+    const hadFocus = actionsRef.current?.contains(document.activeElement) ||
+      document.activeElement === document.body;
+    prevInCart.current = inCart;
+    if (!hadFocus) return;
+    requestAnimationFrame(() => {
+      const target = inCart
+        ? actionsRef.current?.querySelector<HTMLElement>('[aria-label^="Sumar uno"]')
+        : actionsRef.current?.querySelector<HTMLElement>("button");
+      target?.focus();
+    });
+  }, [inCart]);
 
   const limited = Boolean(product.badge);
 
@@ -107,39 +125,41 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         )}
 
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
-          <QuantityStepper value={qty} onChange={setQty} max={MAX_QTY} label={product.name} />
-          <button
-            type="button"
-            className="candy-btn h-12 flex-1 basis-44 px-4 whitespace-nowrap"
-            onClick={() => {
-              add(product.id, qty);
-              setQty(1);
-              setJustAdded(true);
-            }}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <m.span
-                key={justAdded ? "ok" : "add"}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.18 }}
-                className="flex items-center gap-1.5"
+        <div ref={actionsRef} className="mt-auto grid pt-2">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {inCart ? (
+              <m.div
+                key="en-pedido"
+                {...swap}
+                className="flex h-13 items-center justify-between gap-3 rounded-full bg-cream py-0.5 pr-0.5 pl-4"
               >
-                {justAdded ? (
-                  <>
-                    <Check className="size-5" aria-hidden="true" /> ¡Agregado!
-                  </>
-                ) : (
-                  "Agregar al pedido"
-                )}
-              </m.span>
-            </AnimatePresence>
-          </button>
+                <span className="flex items-center gap-1.5 font-extrabold text-bubblegum-deep">
+                  <Check className="size-5" aria-hidden="true" />
+                  En tu pedido
+                </span>
+                <QuantityStepper
+                  value={inCartQty}
+                  min={0}
+                  max={MAX_QTY}
+                  onChange={(q) => setQuantity(product.id, q)}
+                  label={product.name}
+                />
+              </m.div>
+            ) : (
+              <m.button
+                key="agregar"
+                {...swap}
+                type="button"
+                className="candy-btn h-13 w-full px-4"
+                onClick={() => add(product.id, 1)}
+              >
+                Agregar al pedido
+              </m.button>
+            )}
+          </AnimatePresence>
         </div>
         <p className="sr-only" aria-live="polite">
-          {justAdded ? `${product.name} agregado al pedido` : ""}
+          {inCart ? `${product.name} en tu pedido: ${inCartQty}` : ""}
         </p>
       </div>
     </article>
