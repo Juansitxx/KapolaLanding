@@ -33,7 +33,7 @@ export function Gifts() {
         <Reveal className="text-center lg:text-left">
           <h2 className="candy-title text-5xl sm:text-6xl">Hazlo un regalo</h2>
           <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-choco lg:mx-0">
-            Pide tu combo de Mini galletas x4 y le ponemos una tarjeta con tu mensaje, sin costo
+            Pide tu Caja x4 de galletas grandes y le ponemos una tarjeta con tu mensaje, sin costo
             extra. Tú pones las palabras bonitas (o el chiste interno), nosotros las galletas.
           </p>
 
@@ -48,9 +48,9 @@ export function Gifts() {
             ))}
           </ul>
 
-          <a href="#producto-mini-galletas" className="candy-btn mt-8 h-14 w-full px-8 text-lg sm:w-auto">
+          <a href="#producto-caja-x4" className="candy-btn mt-8 h-14 w-full px-8 text-lg sm:w-auto">
             <Gift className="size-5" aria-hidden="true" />
-            Pedir el combo x4
+            Pedir la Caja x4
           </a>
         </Reveal>
 
