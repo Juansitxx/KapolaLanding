@@ -75,6 +75,7 @@
 /* Botón "candy": relleno glossy, contorno crema y base 3D como el logo */
 @utility candy-btn {
   position: relative;
+  white-space: nowrap;
   isolation: isolate;
   display: inline-flex;
   align-items: center;
@@ -135,6 +136,7 @@
 /* Variante clara: para acciones secundarias */
 @utility candy-btn-soft {
   position: relative;
+  white-space: nowrap;
   isolation: isolate;
   display: inline-flex;
   align-items: center;

@@ -48,7 +48,7 @@ const jsonLd = {
   areaServed: { "@type": "City", name: "Ibagué" },
   address: { "@type": "PostalAddress", addressLocality: "Ibagué", addressCountry: "CO" },
   openingHours: "Mo-Sa 09:00-20:00",
-  sameAs: [site.instagramUrl],
+  sameAs: [site.instagramUrl, site.tiktokUrl, site.facebookUrl],
   priceRange: "$",
 };
 

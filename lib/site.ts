@@ -5,6 +5,8 @@ export const site = {
   whatsappDisplay: "+57 324 378 6221",
   instagramHandle: "@kapola_ibague",
   instagramUrl: "https://www.instagram.com/kapola_ibague/",
+  facebookUrl: "https://www.facebook.com/kapolaaa",
+  tiktokUrl: "https://www.tiktok.com/@kapola_ibague",
   schedule: "Lunes a sábado, 9:00 AM a 8:00 PM",
   city: "Ibagué",
 } as const;
