@@ -265,8 +265,8 @@ export function OrderDialog({
           <p className="flex gap-2 rounded-2xl bg-cream px-4 py-3 text-sm text-choco">
             <Bike className="mt-0.5 size-4 shrink-0 text-bubblegum-deep" aria-hidden="true" />
             <span>
-              El domicilio se paga aparte: el costo varía según tu zona dentro de Ibagué y te lo
-              confirmamos por WhatsApp.
+              Puedes pedir tus galletas para hoy mismo o para mañana. El domicilio se paga aparte:
+              el costo varía según tu zona dentro de Ibagué y lo acordamos por WhatsApp.
             </span>
           </p>
 

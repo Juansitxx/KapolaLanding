@@ -21,6 +21,7 @@ export type Product = {
   badge?: string;
   note?: string;
   pastFlavors?: { name: string; image: StaticImageData }[];
+  bestseller?: boolean;
   /** Permite agregar una tarjeta personalizada gratis al pedido */
   giftCard?: boolean;
 };
@@ -28,6 +29,7 @@ export type Product = {
 export const menu: Product[] = [
   {
     id: "chips-chocolate",
+    bestseller: true,
     name: "Chips Chocolate",
     price: 6000,
     detail: "Galleta de 85 gr",
@@ -37,6 +39,7 @@ export const menu: Product[] = [
   },
   {
     id: "red-velvet",
+    bestseller: true,
     name: "Red Velvet",
     price: 6000,
     detail: "Galleta de 85 gr",
@@ -55,6 +58,7 @@ export const menu: Product[] = [
   },
   {
     id: "oreo",
+    bestseller: true,
     name: "Oreo",
     price: 6000,
     detail: "Galleta de 85 gr",
