@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
-import { Check, Gift, Sparkles } from "lucide-react";
+import { Check, Gift, Heart, Sparkles } from "lucide-react";
 
 import { cn } from "cn";
 import type { Product } from "@/data/menu";
@@ -61,6 +61,12 @@ export function ProductCard({ product }: { product: Product }) {
           <p className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border-2 border-white bg-choco px-3 py-1 text-xs font-extrabold tracking-wide text-cream uppercase">
             <Sparkles className="size-3.5" aria-hidden="true" />
             {product.badge}
+          </p>
+        )}
+        {product.bestseller && (
+          <p className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border-2 border-white bg-bubblegum px-3 py-1 text-xs font-extrabold tracking-wide text-white uppercase shadow-card">
+            <Heart className="size-3.5 fill-current" aria-hidden="true" />
+            Más pedido
           </p>
         )}
       </div>
