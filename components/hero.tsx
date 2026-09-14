@@ -6,6 +6,7 @@ import mascota from "@/public/images/mascota.png";
 import { Swoosh, WhatsAppIcon } from "@/components/icons";
 import { OpenStatus } from "@/components/open-status";
 import { greetingWhatsappUrl } from "@/lib/site";
+import { TrackedLink } from "@/components/tracked-link";
 
 export function Hero() {
   return (
@@ -42,7 +43,9 @@ export function Hero() {
             <a href="#menu" className="candy-btn h-14 w-full px-8 text-lg sm:w-auto">
               Ver el menú
             </a>
-            <a
+            <TrackedLink
+              event="whatsapp_click"
+              source="hero"
               href={greetingWhatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -50,7 +53,7 @@ export function Hero() {
             >
               <WhatsAppIcon className="size-5" />
               WhatsApp
-            </a>
+            </TrackedLink>
           </div>
 
           <OpenStatus className="mt-7" />
@@ -64,7 +67,8 @@ export function Hero() {
               sizes="(min-width: 768px) 512px, 90vw"
               className="aspect-[5/4] w-full object-cover"
               placeholder="blur"
-              preload
+              loading="eager"
+              fetchPriority="high"
             />
           </div>
 

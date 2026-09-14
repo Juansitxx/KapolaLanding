@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
-import { Check, Gift, Heart, Sparkles } from "lucide-react";
+import { Check, Gift, Heart, Milk, Sparkles } from "lucide-react";
 
 import { cn } from "cn";
 import type { Product } from "@/data/menu";
@@ -47,12 +47,14 @@ export function ProductCard({ product }: { product: Product }) {
     <article
       className={cn(
         "group relative flex h-full flex-col overflow-hidden rounded-[2rem] border-[3px] bg-white shadow-card",
+        product.featured && "sm:flex-row",
         limited ? "border-bubblegum-soft" : "border-white",
       )}
     >
       <div
         className={cn(
           "relative aspect-[4/3] overflow-hidden",
+          product.featured && "sm:aspect-auto sm:min-h-72 sm:w-1/2 lg:w-[55%]",
           product.imageStyle === "cutout" &&
             "grid place-items-center bg-blush-strong [background-image:radial-gradient(#fde4ee_2px,transparent_2px)] [background-size:18px_18px]",
         )}
@@ -62,7 +64,11 @@ export function ProductCard({ product }: { product: Product }) {
             src={product.image}
             alt={product.imageAlt}
             fill
-            sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+            sizes={
+              product.featured
+                ? "(min-width: 1024px) 640px, (min-width: 640px) 50vw, 100vw"
+                : "(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+            }
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             placeholder="blur"
           />
@@ -89,7 +95,7 @@ export function ProductCard({ product }: { product: Product }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-5">
+      <div className={cn("flex flex-1 flex-col gap-3 p-5", product.featured && "sm:p-8")}>
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-xl leading-tight font-black text-choco">{product.name}</h3>
           <p className="candy-tag shrink-0 text-lg">{formatCOP(product.price)}</p>
@@ -97,6 +103,12 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="text-choco-soft">{product.detail}</p>
         {product.note && (
           <p className="text-sm font-bold text-bubblegum-deep">{product.note}</p>
+        )}
+        {product.pairing && (
+          <p className="inline-flex w-fit items-center gap-1.5 rounded-full bg-blush px-3 py-1 text-sm font-extrabold text-choco">
+            <Milk className="size-4 text-bubblegum-deep" aria-hidden="true" />
+            {product.pairing}
+          </p>
         )}
         {product.giftCard && (
           <p className="inline-flex w-fit items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-sm font-extrabold text-bubblegum-deep">

@@ -3,9 +3,9 @@
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { LazyMotion, MotionConfig, domAnimation } from "motion/react";
 
-import { menu, type Product } from "@/data/menu";
+import { cartCatalog, type CartItem } from "@/data/menu";
 
-export type CartLine = { product: Product; quantity: number };
+export type CartLine = { product: CartItem; quantity: number };
 
 type CartContextValue = {
   lines: CartLine[];
@@ -40,7 +40,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo(() => {
-    const lines = menu
+    const lines = cartCatalog
       .filter((p) => quantities[p.id])
       .map((product) => ({ product, quantity: quantities[product.id] }));
     return {

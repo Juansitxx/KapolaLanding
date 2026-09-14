@@ -4,7 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
-import { Bike, Gift, Trash2 } from "lucide-react";
+import { Bike, Gift, Milk, Trash2 } from "lucide-react";
+import { track } from "@vercel/analytics";
 
 import mascota from "@/public/images/mascota.png";
 import {
@@ -20,6 +21,7 @@ import { WhatsAppIcon } from "@/components/icons";
 import { QuantityStepper } from "@/components/quantity-stepper";
 import { MAX_QTY, useCart } from "@/components/cart/cart-provider";
 import { useShopStatus } from "@/components/open-status";
+import { addons } from "@/data/menu";
 import { buildOrderMessage, formatCOP, whatsappUrl } from "@/lib/site";
 import { statusText } from "@/lib/schedule";
 
@@ -32,31 +34,43 @@ export function OrderDialog({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  const { lines, subtotal, setQuantity } = useCart();
+  const { lines, subtotal, add, setQuantity } = useCart();
   const shopStatus = useShopStatus();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [sent, setSent] = useState(false);
+  const [sentUrl, setSentUrl] = useState<string | null>(null);
   const [wantsCard, setWantsCard] = useState(false);
   const [card, setCard] = useState({ to: "", from: "", message: "" });
 
   const empty = lines.length === 0;
   const cardProduct = lines.find((l) => l.product.giftCard)?.product;
   const includeCard = Boolean(cardProduct) && wantsCard;
+  const milk = addons[0];
+  const hasMilk = lines.some((l) => l.product.id === milk.id);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (empty) return;
-    const message = buildOrderMessage(
+  const orderUrl = whatsappUrl(
+    buildOrderMessage(
       lines.map((l) => ({ name: l.product.name, quantity: l.quantity, price: l.product.price })),
       name.trim(),
       address.trim(),
       includeCard
         ? { to: card.to.trim(), from: card.from.trim(), message: card.message.trim() }
         : undefined,
-    );
-    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
-    setSent(true);
+    ),
+  );
+  // El enlace de respaldo solo sirve si el pedido no cambió desde que se envió
+  const showFallback = sentUrl !== null && sentUrl === orderUrl && !empty;
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (empty) return;
+    window.open(orderUrl, "_blank", "noopener,noreferrer");
+    setSentUrl(orderUrl);
+    track("pedido_enviado", {
+      productos: lines.reduce((n, l) => n + l.quantity, 0),
+      total: subtotal,
+      tarjeta: includeCard ? "si" : "no",
+    });
   }
 
   return (
@@ -64,7 +78,7 @@ export function OrderDialog({
       open={open}
       onOpenChange={(next) => {
         onOpenChange(next);
-        if (!next) setSent(false);
+        if (!next) setSentUrl(null);
       }}
     >
       <DialogContent
@@ -135,6 +149,25 @@ export function OrderDialog({
               ))}
             </AnimatePresence>
           </ul>
+        )}
+
+        {!empty && !hasMilk && (
+          <div className="mx-5 mt-4 flex items-center gap-3 rounded-2xl border-2 border-dashed border-bubblegum-soft bg-white px-4 py-3">
+            <span className="grid size-10 shrink-0 place-items-center rounded-full bg-cream text-bubblegum-deep">
+              <Milk className="size-5" aria-hidden="true" />
+            </span>
+            <p className="min-w-0 flex-1 text-sm leading-snug text-choco">
+              <strong className="block">¿Le agregas leche?</strong>
+              {milk.detail}
+            </p>
+            <button
+              type="button"
+              onClick={() => add(milk.id, 1)}
+              className="candy-btn-soft h-11 shrink-0 px-4 text-sm"
+            >
+              +{formatCOP(milk.price)}
+            </button>
+          </div>
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-5 pt-4 pb-6">
@@ -281,10 +314,17 @@ export function OrderDialog({
             Enviar pedido por WhatsApp
           </button>
 
-          {sent && !empty && (
+          {showFallback && (
             <p role="status" className="text-center text-sm font-bold text-bubblegum-deep">
-              ¡Listo! Terminamos de cuadrar todo por WhatsApp. Si no se abrió el chat, vuelve a
-              tocar el botón.
+              ¡Listo! Terminamos de cuadrar todo por WhatsApp.{" "}
+              <a
+                href={orderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-2"
+              >
+                ¿No se abrió el chat? Toca aquí
+              </a>
             </p>
           )}
         </form>

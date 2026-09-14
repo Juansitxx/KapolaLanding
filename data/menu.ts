@@ -8,6 +8,7 @@ import temporada from "@/public/images/temporada.png";
 import temporadaCoco from "@/public/images/temporada-coco.jpg";
 import temporadaFresa from "@/public/images/temporada-fresa.jpg";
 import miniGalletas from "@/public/images/mini-galletas.jpg";
+import cajaX4 from "@/public/images/caja-x4.jpg";
 
 export type Product = {
   id: string;
@@ -24,7 +25,16 @@ export type Product = {
   bestseller?: boolean;
   /** Permite agregar una tarjeta personalizada gratis al pedido */
   giftCard?: boolean;
+  /** Sugerencia de combinación, visible en la tarjeta */
+  pairing?: string;
+  /** Tarjeta a lo ancho de la cuadrícula */
+  featured?: boolean;
 };
+
+/** Lo mínimo que necesita el carrito: productos del menú y adicionales */
+export type CartItem = Pick<Product, "id" | "name" | "price" | "giftCard">;
+
+export type Addon = CartItem & { detail: string };
 
 export const menu: Product[] = [
   {
@@ -89,6 +99,29 @@ export const menu: Product[] = [
     imageAlt: "Vaso Kapola con mini galletas de chocolate, red velvet y Oreo",
     imageStyle: "photo",
     note: "Los sabores los eliges por WhatsApp",
+  },
+  {
+    id: "caja-x4",
+    name: "Caja x4 galletas",
+    price: 25500,
+    detail: "4 galletas grandes de 85 gr en caja Kapola, lista para regalar",
+    image: cajaX4,
+    imageAlt: "Caja Kapola con galletas grandes y moño fucsia",
+    imageStyle: "photo",
+    note: "Tú eliges los 4 sabores por WhatsApp",
     giftCard: true,
+    pairing: "Con leche: $28.000",
+    featured: true,
   },
 ];
+
+export const addons: Addon[] = [
+  {
+    id: "leche",
+    name: "Leche para acompañar",
+    price: 2500,
+    detail: "Cajita de leche entera de 200 ml, perfecta para mojar la galleta",
+  },
+];
+
+export const cartCatalog: CartItem[] = [...menu, ...addons];

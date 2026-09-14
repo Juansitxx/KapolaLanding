@@ -113,6 +113,7 @@ await saveJpg(crop(PLATO, 860, 400, 440, 330), "chips-chocolate");
 await saveJpg(crop(OREO_LECHE, 480, 20, 720, 540), "oreo");
 await saveJpg(crop(MARACUYA, 0, 520, 660, 495), "cheesecake-maracuya");
 await saveJpg(crop(MINI, 75, 192, 590, 738), "mini-galletas");
+await saveJpg(crop(REGALO_GYM, 0, 940, 760, 570), "caja-x4");
 await circle(MENU, 203, 640, 56, "red-velvet");
 await circle(MENU, 194, 1005, 68, "temporada");
 
