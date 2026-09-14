@@ -2,10 +2,16 @@ import Image from "next/image";
 
 import premio from "@/public/images/premio-emprendimiento.jpg";
 import lechonaRun from "@/public/images/lechona-run.jpg";
+import feriaValientes from "@/public/images/feria-valientes.jpg";
 import hechoEnCasa from "@/public/images/hecho-en-casa.jpg";
 import { Reveal } from "@/components/reveal";
 
 const moments = [
+  {
+    src: feriaValientes,
+    alt: "Laura Lasso sonriendo en el stand de Kapola en la feria Mujeres que abren caminos",
+    caption: "ValientES",
+  },
   {
     src: lechonaRun,
     alt: "Galleta Kapola empacada con el sticker de la Lechona Run",
@@ -41,22 +47,22 @@ export function About() {
               Estímulos Municipales de Juventudes 2026 · Potencia tu Emprendimiento
             </figcaption>
           </figure>
-          <div className="mt-6 grid grid-cols-2 gap-4">
+          <div className="mt-6 grid grid-cols-3 gap-3">
             {moments.map((m, i) => (
               <figure
                 key={m.caption}
-                className={`relative overflow-hidden rounded-3xl border-[5px] border-white bg-white shadow-card ${
-                  i ? "-rotate-2" : "rotate-2"
+                className={`relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-card ${
+                  i % 2 ? "-rotate-2" : "rotate-2"
                 }`}
               >
                 <Image
                   src={m.src}
                   alt={m.alt}
-                  sizes="(min-width: 768px) 216px, 45vw"
-                  className="aspect-square w-full object-cover"
+                  sizes="(min-width: 768px) 144px, 30vw"
+                  className="aspect-[4/5] w-full object-cover"
                   placeholder="blur"
                 />
-                <figcaption className="absolute bottom-2 left-2 rounded-full bg-cream px-3 py-1 text-xs font-extrabold text-bubblegum-deep">
+                <figcaption className="absolute bottom-1.5 left-1.5 rounded-full bg-cream px-2 py-0.5 text-[0.65rem] font-extrabold text-bubblegum-deep sm:text-xs">
                   {m.caption}
                 </figcaption>
               </figure>
@@ -74,7 +80,8 @@ export function About() {
             </p>
             <p>
               Desde entonces hemos llevado nuestras galletas a ferias y eventos de la ciudad, como
-              la Lechona Run, y armamos una comunidad que nos escribe cada semana preguntando cuál
+              la Lechona Run o la feria ValientES · Mujeres que abren caminos, y armamos una
+              comunidad que nos escribe cada semana preguntando cuál
               es la galleta de temporada (spoiler: nunca lo contamos antes de tiempo).
             </p>
             <p>

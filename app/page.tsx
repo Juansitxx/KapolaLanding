@@ -3,6 +3,7 @@ import { FloatingCart } from "@/components/cart/floating-cart";
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
 import { MenuSection } from "@/components/menu/menu-section";
+import { Gifts } from "@/components/gifts";
 import { About } from "@/components/about";
 import { Community } from "@/components/community";
 import { Contact } from "@/components/contact";
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <MenuSection />
+        <Gifts />
         <About />
         <Community />
         <Contact />

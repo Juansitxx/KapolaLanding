@@ -20,6 +20,10 @@ const PLATO = shot("9.27.23 PM (2)");
 const LECHONA_RUN = shot("9.27.23 PM (3)");
 const COCO = shot("9.27.24 PM");
 const FRESA = shot("9.27.24 PM (1)");
+const REGALO_CUMPLE_MAMA = shot("9.57.10 PM");
+const REGALO_GYM = shot("9.57.10 PM (2)");
+const REGALO_MADRES = shot("9.58.32 PM (1)");
+const STAND_VALIENTES = shot("9.58.33 PM");
 
 await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });
@@ -123,9 +127,15 @@ await saveJpg(
 await saveJpg(crop(AWARD, 0, 490, 739, 610), "premio-emprendimiento");
 await saveJpg(crop(LECHONA_RUN, 120, 640, 840, 700).resize(720), "lechona-run");
 await saveJpg(crop(COCO, 0, 300, 1200, 1300).resize(600), "hecho-en-casa");
+await saveJpg(crop(STAND_VALIENTES, 230, 280, 760, 760).resize(600), "feria-valientes");
 
-// Comunidad: miniaturas del perfil de Instagram
-await saveJpg(crop(GRID, 247, 565, 245, 275), "feria-entrega");
+// Regalos personalizados (4:5)
+await saveJpg(crop(REGALO_CUMPLE_MAMA, 120, 300, 1040, 1100).resize(720), "regalo-cumple-mama");
+await saveJpg(crop(REGALO_GYM, 0, 130, 1179, 1399).resize(720), "regalo-gym-rat");
+await saveJpg(crop(REGALO_MADRES, 180, 420, 920, 1000).resize(720), "regalo-dia-madres");
+
+// Comunidad
+await saveJpg(crop(STAND_VALIENTES, 200, 640, 800, 960).resize(560), "feria-stand");
 await saveJpg(crop(GRID, 247, 843, 245, 325), "meme-uno");
 await saveJpg(crop(GRID, 247, 1215, 245, 282), "a-que-sabe-colombia");
 await saveJpg(crop(GRID, 494, 1215, 245, 282), "meme-perro");

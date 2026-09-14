@@ -15,23 +15,41 @@ export function formatCOP(value: number) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
 }
 
+// api.whatsapp.com directo: la redirección de wa.me corrompe los emojis en algunos dispositivos
 export function whatsappUrl(text: string) {
-  return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`;
+  return `https://api.whatsapp.com/send?phone=${site.whatsappNumber}&text=${encodeURIComponent(text)}`;
 }
 
 export const greetingWhatsappUrl = whatsappUrl("¡Hola Kapola! Quiero hacer un pedido 🍪");
 
 export type OrderLine = { name: string; quantity: number; price: number };
 
-export function buildOrderMessage(lines: OrderLine[], name: string, address: string) {
+export type GiftCard = { to: string; from: string; message: string };
+
+export function buildOrderMessage(
+  lines: OrderLine[],
+  name: string,
+  address: string,
+  giftCard?: GiftCard,
+) {
   const items = lines.map(
     (l) => `- ${l.quantity}x ${l.name} (${formatCOP(l.quantity * l.price)})`,
   );
   const total = lines.reduce((sum, l) => sum + l.quantity * l.price, 0);
+  const card = giftCard
+    ? [
+        "",
+        "Tarjeta personalizada:",
+        `Para: ${giftCard.to}`,
+        ...(giftCard.from ? [`De: ${giftCard.from}`] : []),
+        `Mensaje: ${giftCard.message}`,
+      ]
+    : [];
   return [
     "¡Hola Kapola! 🍪 Quiero hacer este pedido:",
     ...items,
     `Total: ${formatCOP(total)}`,
+    ...card,
     "",
     `Nombre: ${name}`,
     `Dirección de entrega: ${address}`,

@@ -21,6 +21,8 @@ export type Product = {
   badge?: string;
   note?: string;
   pastFlavors?: { name: string; image: StaticImageData }[];
+  /** Permite agregar una tarjeta personalizada gratis al pedido */
+  giftCard?: boolean;
 };
 
 export const menu: Product[] = [
@@ -76,12 +78,13 @@ export const menu: Product[] = [
   },
   {
     id: "mini-galletas",
-    name: "Mini galletas (combo x3)",
+    name: "Mini galletas (combo x4)",
     price: 15000,
-    detail: "3 galletas de 45 gr, sabores clásicos",
+    detail: "4 galletas de 45 gr, sabores clásicos",
     image: miniGalletas,
     imageAlt: "Vaso Kapola con mini galletas de chocolate, red velvet y Oreo",
     imageStyle: "photo",
     note: "Los sabores los eliges por WhatsApp",
+    giftCard: true,
   },
 ];
