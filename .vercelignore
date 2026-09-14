@@ -1,0 +1,6 @@
+node_modules
+.next
+.git
+.claude
+assets
+prompt-landing-kapola-v2.md
