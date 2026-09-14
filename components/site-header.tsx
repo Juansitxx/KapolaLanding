@@ -6,6 +6,7 @@ import { greetingWhatsappUrl } from "@/lib/site";
 
 const links = [
   { href: "#menu", label: "Menú" },
+  { href: "#regalos", label: "Regalos" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#contacto", label: "Contacto" },
 ];

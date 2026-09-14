@@ -19,7 +19,7 @@ export function MenuSection() {
 
         <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {menu.map((product, i) => (
-            <li key={product.id}>
+            <li key={product.id} id={`producto-${product.id}`}>
               <Reveal className="h-full" delay={Math.min(i, 3) * 0.05}>
                 <ProductCard product={product} />
               </Reveal>

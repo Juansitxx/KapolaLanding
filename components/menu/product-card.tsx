@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Gift, Sparkles } from "lucide-react";
 
 import { cn } from "cn";
 import type { Product } from "@/data/menu";
@@ -73,6 +73,12 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="text-choco-soft">{product.detail}</p>
         {product.note && (
           <p className="text-sm font-bold text-bubblegum-deep">{product.note}</p>
+        )}
+        {product.giftCard && (
+          <p className="inline-flex w-fit items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-sm font-extrabold text-bubblegum-deep">
+            <Gift className="size-4" aria-hidden="true" />
+            Tarjeta personalizada gratis
+          </p>
         )}
         {product.pastFlavors && (
           <div className="flex items-center gap-3 rounded-2xl bg-blush px-3 py-2">
