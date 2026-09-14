@@ -5,6 +5,7 @@ import mascota from "@/public/images/mascota.png";
 import { WhatsAppIcon } from "@/components/icons";
 import { SocialLinks } from "@/components/social-links";
 import { greetingWhatsappUrl, site } from "@/lib/site";
+import { TrackedLink } from "@/components/tracked-link";
 
 export function SiteFooter() {
   return (
@@ -21,7 +22,9 @@ export function SiteFooter() {
 
         <div className="flex gap-2">
           <SocialLinks linkClassName="bg-cream/10 hover:bg-bubblegum" />
-          <a
+          <TrackedLink
+            event="whatsapp_click"
+            source="footer"
             href={greetingWhatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -29,7 +32,7 @@ export function SiteFooter() {
             className="grid size-11 place-items-center rounded-full bg-cream/10 transition hover:bg-bubblegum"
           >
             <WhatsAppIcon className="size-5" />
-          </a>
+          </TrackedLink>
         </div>
       </div>
     </footer>
