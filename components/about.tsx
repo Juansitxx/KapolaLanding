@@ -1,8 +1,22 @@
 import Image from "next/image";
 
 import premio from "@/public/images/premio-emprendimiento.jpg";
-import galletasConLeche from "@/public/images/galletas-con-leche.jpg";
+import lechonaRun from "@/public/images/lechona-run.jpg";
+import hechoEnCasa from "@/public/images/hecho-en-casa.jpg";
 import { Reveal } from "@/components/reveal";
+
+const moments = [
+  {
+    src: lechonaRun,
+    alt: "Galleta Kapola empacada con el sticker de la Lechona Run",
+    caption: "Lechona Run",
+  },
+  {
+    src: hechoEnCasa,
+    alt: "Bandeja de galletas de coco recién horneadas enfriándose en la rejilla",
+    caption: "Recién horneadas",
+  },
+];
 
 const facts = [
   { value: "2024", label: "horneando en Ibagué" },
@@ -27,14 +41,26 @@ export function About() {
               Estímulos Municipales de Juventudes 2026 · Potencia tu Emprendimiento
             </figcaption>
           </figure>
-          <div className="absolute -top-12 -right-2 w-32 rotate-6 overflow-hidden rounded-3xl border-[5px] border-white shadow-card sm:-right-8 sm:w-44">
-            <Image
-              src={galletasConLeche}
-              alt="Vaso de leche rodeado de galletas Kapola"
-              sizes="176px"
-              className="aspect-[3/4] w-full object-cover"
-              placeholder="blur"
-            />
+          <div className="mt-6 grid grid-cols-2 gap-4">
+            {moments.map((m, i) => (
+              <figure
+                key={m.caption}
+                className={`relative overflow-hidden rounded-3xl border-[5px] border-white bg-white shadow-card ${
+                  i ? "-rotate-2" : "rotate-2"
+                }`}
+              >
+                <Image
+                  src={m.src}
+                  alt={m.alt}
+                  sizes="(min-width: 768px) 216px, 45vw"
+                  className="aspect-square w-full object-cover"
+                  placeholder="blur"
+                />
+                <figcaption className="absolute bottom-2 left-2 rounded-full bg-cream px-3 py-1 text-xs font-extrabold text-bubblegum-deep">
+                  {m.caption}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </Reveal>
 

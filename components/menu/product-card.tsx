@@ -74,6 +74,26 @@ export function ProductCard({ product }: { product: Product }) {
         {product.note && (
           <p className="text-sm font-bold text-bubblegum-deep">{product.note}</p>
         )}
+        {product.pastFlavors && (
+          <div className="flex items-center gap-3 rounded-2xl bg-blush px-3 py-2">
+            <p className="text-xs leading-tight font-extrabold text-choco-soft">
+              Ya pasaron por temporada:
+            </p>
+            <ul className="flex gap-2">
+              {product.pastFlavors.map((f) => (
+                <li key={f.name} className="flex flex-col items-center gap-0.5">
+                  <Image
+                    src={f.image}
+                    alt={`Galleta de ${f.name.toLowerCase()} (temporada pasada)`}
+                    sizes="48px"
+                    className="size-11 rounded-full border-2 border-white object-cover shadow-card"
+                  />
+                  <span className="text-[0.7rem] font-bold text-choco">{f.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
           <QuantityStepper value={qty} onChange={setQty} max={MAX_QTY} label={product.name} />

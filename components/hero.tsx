@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Award, Clock, MapPin } from "lucide-react";
 
-import torre from "@/public/images/galletas-nutella.jpg";
+import plato from "@/public/images/plato-surtido.jpg";
 import mascota from "@/public/images/mascota.png";
 import { Swoosh } from "@/components/icons";
+import { OpenStatus } from "@/components/open-status";
 import { greetingWhatsappUrl } from "@/lib/site";
 
 export function Hero() {
@@ -51,7 +52,7 @@ export function Hero() {
             </a>
           </div>
 
-          <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-bold text-choco-soft md:justify-start">
+          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-bold text-choco-soft md:justify-start">
             <li className="flex items-center gap-1.5">
               <MapPin className="size-4 text-bubblegum" aria-hidden="true" />
               Domicilios en todo Ibagué
@@ -60,16 +61,19 @@ export function Hero() {
               <Clock className="size-4 text-bubblegum" aria-hidden="true" />
               Lun a sáb · 9 AM a 8 PM
             </li>
+            <li>
+              <OpenStatus />
+            </li>
           </ul>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm md:max-w-md">
+        <div className="relative mx-auto w-full max-w-md md:max-w-lg">
           <div className="relative rotate-2 overflow-hidden rounded-[2.5rem] border-[6px] border-cream shadow-pop">
             <Image
-              src={torre}
-              alt="Torre de galletas rellenas bañadas en chocolate"
-              sizes="(min-width: 768px) 448px, 90vw"
-              className="aspect-[4/5] w-full object-cover"
+              src={plato}
+              alt="Plato con galletas Kapola de Oreo, red velvet, chips de chocolate y chips blancos junto a un vaso de leche"
+              sizes="(min-width: 768px) 512px, 90vw"
+              className="aspect-[5/4] w-full object-cover"
               placeholder="blur"
               preload
             />

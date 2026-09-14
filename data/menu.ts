@@ -2,9 +2,11 @@ import type { StaticImageData } from "next/image";
 
 import chipsChocolate from "@/public/images/chips-chocolate.jpg";
 import redVelvet from "@/public/images/red-velvet.png";
-import cheesecakeMaracuya from "@/public/images/cheesecake-maracuya.png";
-import oreo from "@/public/images/oreo.png";
+import cheesecakeMaracuya from "@/public/images/cheesecake-maracuya.jpg";
+import oreo from "@/public/images/oreo.jpg";
 import temporada from "@/public/images/temporada.png";
+import temporadaCoco from "@/public/images/temporada-coco.jpg";
+import temporadaFresa from "@/public/images/temporada-fresa.jpg";
 import miniGalletas from "@/public/images/mini-galletas.jpg";
 
 export type Product = {
@@ -18,6 +20,7 @@ export type Product = {
   imageStyle: "photo" | "cutout";
   badge?: string;
   note?: string;
+  pastFlavors?: { name: string; image: StaticImageData }[];
 };
 
 export const menu: Product[] = [
@@ -27,7 +30,7 @@ export const menu: Product[] = [
     price: 6000,
     detail: "Galleta de 85 gr",
     image: chipsChocolate,
-    imageAlt: "Galleta de chips de chocolate partida con el centro de chocolate derretido",
+    imageAlt: "Galleta de chips de chocolate sobre un plato",
     imageStyle: "photo",
   },
   {
@@ -45,8 +48,8 @@ export const menu: Product[] = [
     price: 6000,
     detail: "Galleta de 85 gr",
     image: cheesecakeMaracuya,
-    imageAlt: "Galleta de cheesecake de maracuyá con chips blancos",
-    imageStyle: "cutout",
+    imageAlt: "Galleta partida con relleno cremoso de maracuyá y chips blancos",
+    imageStyle: "photo",
   },
   {
     id: "oreo",
@@ -54,8 +57,8 @@ export const menu: Product[] = [
     price: 6000,
     detail: "Galleta de 85 gr",
     image: oreo,
-    imageAlt: "Galleta con trozos de galleta Oreo",
-    imageStyle: "cutout",
+    imageAlt: "Mano sumergiendo una galleta de Oreo en un vaso de leche",
+    imageStyle: "photo",
   },
   {
     id: "temporada",
@@ -66,6 +69,10 @@ export const menu: Product[] = [
     imageAlt: "Galleta rosada con un signo de interrogación: sabor sorpresa",
     imageStyle: "cutout",
     badge: "Edición limitada",
+    pastFlavors: [
+      { name: "Coco", image: temporadaCoco },
+      { name: "Fresa", image: temporadaFresa },
+    ],
   },
   {
     id: "mini-galletas",
@@ -78,5 +85,3 @@ export const menu: Product[] = [
     note: "Los sabores los eliges por WhatsApp",
   },
 ];
-
-export const productById = new Map(menu.map((p) => [p.id, p]));

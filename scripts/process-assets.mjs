@@ -1,26 +1,34 @@
-// Genera public/images/* a partir de ./assets. Provisional: las fotos actuales
-// son capturas de Instagram, así que se recortan para quitar la interfaz.
+// Genera public/images/* y los íconos de app/ a partir de ./assets.
+// Mezcla fotos profesionales con capturas de Instagram recortadas (provisionales).
 import sharp from "sharp";
-import { mkdir } from "node:fs/promises";
+import { mkdir, rm } from "node:fs/promises";
 
 const OUT = "public/images";
 const FOTOS = "assets/fotos";
 const shot = (name) => `${FOTOS}/WhatsApp Image 2026-09-13 at ${name}.jpeg`;
 
+// Capturas de Instagram
 const GRID = shot("7.52.23 PM");
-const TOWER = shot("7.52.24 PM");
 const AWARD = shot("7.52.24 PM (1)");
 const MINI = shot("7.52.24 PM (2)");
-const CHOCO = shot("7.52.24 PM (3)");
 const MENU = shot("7.52.24 PM (4)");
 
+// Fotos nuevas
+const OREO_LECHE = shot("9.27.23 PM");
+const MARACUYA = shot("9.27.23 PM (1)");
+const PLATO = shot("9.27.23 PM (2)");
+const LECHONA_RUN = shot("9.27.23 PM (3)");
+const COCO = shot("9.27.24 PM");
+const FRESA = shot("9.27.24 PM (1)");
+
+await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });
 
 const crop = (src, left, top, width, height) =>
   sharp(src).extract({ left, top, width, height });
 
 const saveJpg = (img, name) =>
-  img.jpeg({ quality: 90, mozjpeg: true }).toFile(`${OUT}/${name}.jpg`);
+  img.jpeg({ quality: 88, mozjpeg: true }).toFile(`${OUT}/${name}.jpg`);
 
 // Quita un fondo de color plano: alfa según distancia al color de fondo y
 // "des-contaminación" del color en los bordes antialiasados.
@@ -75,7 +83,11 @@ async function circle(src, cx, cy, r, name) {
     outer: 40,
   });
   const buf = await keyed.png().toBuffer();
-  await sharp(buf).trim({ threshold: 1 }).resize({ width: 1000 }).png({ palette: true, quality: 95 }).toFile(`${OUT}/logo.png`);
+  await sharp(buf)
+    .trim({ threshold: 1 })
+    .resize({ width: 1000 })
+    .png({ palette: true, quality: 95 })
+    .toFile(`${OUT}/logo.png`);
 }
 
 // Mascota: recortada del menú gráfico, sin el fondo rosa pastel
@@ -89,25 +101,32 @@ async function circle(src, cx, cy, r, name) {
   await sharp(buf).trim({ threshold: 1 }).png().toFile(`${OUT}/mascota.png`);
 }
 
-// Fotos completas
-await saveJpg(crop(TOWER, 0, 295, 739, 865), "galletas-nutella");
-await saveJpg(crop(AWARD, 0, 490, 739, 610), "premio-emprendimiento");
-await saveJpg(crop(MINI, 75, 192, 590, 738), "mini-galletas");
-await saveJpg(crop(CHOCO, 75, 192, 590, 708), "chips-chocolate");
+// Hero
+await saveJpg(sharp(PLATO), "plato-surtido");
 
-// Galletas del menú gráfico (recorte circular)
+// Menú (4:3). Los recortes evitan el sticker del vaso cuando se puede.
+await saveJpg(crop(PLATO, 860, 400, 440, 330), "chips-chocolate");
+await saveJpg(crop(OREO_LECHE, 480, 20, 720, 540), "oreo");
+await saveJpg(crop(MARACUYA, 0, 520, 660, 495), "cheesecake-maracuya");
+await saveJpg(crop(MINI, 75, 192, 590, 738), "mini-galletas");
 await circle(MENU, 203, 640, 56, "red-velvet");
-await circle(MENU, 198, 744, 60, "cheesecake-maracuya");
-await circle(MENU, 194, 860, 62, "oreo");
 await circle(MENU, 194, 1005, 68, "temporada");
 
-// Miniaturas del perfil de Instagram
+// Sabores que ya pasaron por temporada
+await saveJpg(crop(COCO, 150, 620, 900, 900).resize(480, 480), "temporada-coco");
+await saveJpg(
+  crop(FRESA, 330, 760, 840, 840).resize(480, 480).normalise({ lower: 1, upper: 99 }).modulate({ brightness: 1.15, saturation: 1.3 }),
+  "temporada-fresa",
+);
+
+// Nosotros
+await saveJpg(crop(AWARD, 0, 490, 739, 610), "premio-emprendimiento");
+await saveJpg(crop(LECHONA_RUN, 120, 640, 840, 700).resize(720), "lechona-run");
+await saveJpg(crop(COCO, 0, 300, 1200, 1300).resize(600), "hecho-en-casa");
+
+// Comunidad: miniaturas del perfil de Instagram
 await saveJpg(crop(GRID, 247, 565, 245, 275), "feria-entrega");
-await saveJpg(crop(GRID, 0, 565, 245, 275), "cliente-sundae");
-await saveJpg(crop(GRID, 494, 560, 245, 280), "sundae");
-await saveJpg(crop(GRID, 0, 843, 245, 325), "cheesecake-frutos-rojos");
 await saveJpg(crop(GRID, 247, 843, 245, 325), "meme-uno");
-await saveJpg(crop(GRID, 494, 843, 245, 325), "galletas-con-leche");
 await saveJpg(crop(GRID, 247, 1215, 245, 282), "a-que-sabe-colombia");
 await saveJpg(crop(GRID, 494, 1215, 245, 282), "meme-perro");
 
