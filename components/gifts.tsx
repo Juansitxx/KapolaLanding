@@ -31,11 +31,7 @@ export function Gifts() {
     <section id="regalos" className="relative overflow-hidden bg-blush-strong px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
         <Reveal className="text-center lg:text-left">
-          <p className="inline-flex items-center gap-2 rounded-full border-2 border-white bg-cream px-4 py-1.5 text-sm font-extrabold text-bubblegum-deep shadow-card">
-            <Gift className="size-4" aria-hidden="true" />
-            Tarjeta personalizada gratis
-          </p>
-          <h2 className="candy-title mt-6 text-5xl sm:text-6xl">Hazlo un regalo</h2>
+          <h2 className="candy-title text-5xl sm:text-6xl">Hazlo un regalo</h2>
           <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-choco lg:mx-0">
             Pide tu combo de Mini galletas x4 y le ponemos una tarjeta con tu mensaje, sin costo
             extra. Tú pones las palabras bonitas (o el chiste interno), nosotros las galletas.
@@ -53,6 +49,7 @@ export function Gifts() {
           </ul>
 
           <a href="#producto-mini-galletas" className="candy-btn mt-8 h-14 w-full px-8 text-lg sm:w-auto">
+            <Gift className="size-5" aria-hidden="true" />
             Pedir el combo x4
           </a>
         </Reveal>
