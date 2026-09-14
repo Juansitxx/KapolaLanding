@@ -19,7 +19,9 @@ import { Label } from "@/components/ui/label";
 import { WhatsAppIcon } from "@/components/icons";
 import { QuantityStepper } from "@/components/quantity-stepper";
 import { MAX_QTY, useCart } from "@/components/cart/cart-provider";
+import { useShopStatus } from "@/components/open-status";
 import { buildOrderMessage, formatCOP, whatsappUrl } from "@/lib/site";
+import { statusText } from "@/lib/schedule";
 
 export function OrderDialog({
   open,
@@ -29,6 +31,7 @@ export function OrderDialog({
   onOpenChange: (open: boolean) => void;
 }) {
   const { lines, subtotal, setQuantity } = useCart();
+  const shopStatus = useShopStatus();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [sent, setSent] = useState(false);
@@ -173,6 +176,13 @@ export function OrderDialog({
               confirmamos por WhatsApp.
             </span>
           </p>
+
+          {shopStatus && shopStatus !== "open" && (
+            <p className="rounded-2xl bg-blush px-4 py-3 text-sm text-choco">
+              <strong>{statusText[shopStatus]}.</strong> Igual puedes dejarnos tu pedido y te
+              respondemos apenas abramos.
+            </p>
+          )}
 
           <button type="submit" className="candy-btn h-14 w-full text-lg" disabled={empty}>
             <WhatsAppIcon className="size-6" />

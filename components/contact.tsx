@@ -3,6 +3,7 @@ import { Bike, Clock, MapPin, Wallet } from "lucide-react";
 
 import mascota from "@/public/images/mascota.png";
 import { InstagramIcon, WhatsAppIcon } from "@/components/icons";
+import { OpenStatus } from "@/components/open-status";
 import { Reveal } from "@/components/reveal";
 import { greetingWhatsappUrl, site } from "@/lib/site";
 
@@ -36,6 +37,7 @@ export function Contact() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <Image src={mascota} alt="" sizes="112px" className="mx-auto w-24 sm:w-28" />
           <h2 className="candy-title mt-4 text-5xl sm:text-6xl">No tenemos local… ¡vamos hasta ti!</h2>
+          <OpenStatus className="mt-6" />
         </Reveal>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2">
