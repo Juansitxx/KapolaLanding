@@ -3,7 +3,7 @@ export type ShopStatus = "open" | "opens-today" | "opens-tomorrow" | "opens-mond
 const OPEN_HOUR = 9;
 const CLOSE_HOUR = 20;
 
-/** Horario: lunes a sábado 9:00–20:00, hora de Colombia */
+/** Horario: lunes a sábado 9:00 a 20:00, hora de Colombia */
 export function getShopStatus(now: Date = new Date()): ShopStatus {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Bogota",

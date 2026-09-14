@@ -68,7 +68,7 @@ export function OrderDialog({
       }}
     >
       <DialogContent
-        className="top-auto bottom-0 left-0 max-h-[92dvh] max-w-none translate-x-0 translate-y-0 gap-0 overflow-y-auto rounded-t-[2rem] rounded-b-none border-t-4 border-cream bg-background p-0 text-base ring-0 data-open:slide-in-from-bottom-10 data-open:zoom-in-100 data-closed:slide-out-to-bottom-10 data-closed:zoom-out-100 sm:top-1/2 sm:bottom-auto sm:left-1/2 sm:max-w-md sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[2rem] sm:border-4 sm:data-open:slide-in-from-bottom-4 [&_[data-slot=dialog-close]]:top-4 [&_[data-slot=dialog-close]]:right-4 [&_[data-slot=dialog-close]]:size-10 [&_[data-slot=dialog-close]]:rounded-full [&_[data-slot=dialog-close]]:bg-blush"
+        className="top-auto bottom-0 left-0 max-h-[92dvh] max-w-none translate-x-0 translate-y-0 gap-0 overflow-y-auto rounded-t-[2rem] rounded-b-none bg-background shadow-[inset_0_4px_0_var(--color-cream),0_-12px_40px_-12px_rgb(158_13_82/0.35)] p-0 text-base ring-0 data-open:slide-in-from-bottom-10 data-open:zoom-in-100 data-closed:slide-out-to-bottom-10 data-closed:zoom-out-100 sm:top-1/2 sm:bottom-auto sm:left-1/2 sm:max-w-md sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[2rem] sm:shadow-[inset_0_0_0_4px_var(--color-cream),0_24px_48px_-20px_rgb(158_13_82/0.5)] sm:data-open:slide-in-from-bottom-4 [&_[data-slot=dialog-close]]:top-4 [&_[data-slot=dialog-close]]:right-4 [&_[data-slot=dialog-close]]:size-10 [&_[data-slot=dialog-close]]:rounded-full [&_[data-slot=dialog-close]]:bg-blush"
       >
         <DialogHeader className="flex-row items-center gap-3 px-5 pt-5 pb-3 pr-16">
           <Image src={mascota} alt="" sizes="48px" className="w-12" />
@@ -116,7 +116,6 @@ export function OrderDialog({
                       </p>
                     </div>
                     <QuantityStepper
-                      size="sm"
                       value={quantity}
                       min={1}
                       max={MAX_QTY}
@@ -126,7 +125,7 @@ export function OrderDialog({
                     <button
                       type="button"
                       onClick={() => setQuantity(product.id, 0)}
-                      className="grid size-9 shrink-0 place-items-center rounded-full text-choco-soft transition hover:bg-blush hover:text-destructive"
+                      className="grid size-11 shrink-0 place-items-center rounded-full text-choco-soft transition-colors hover:bg-blush hover:text-destructive"
                       aria-label={`Eliminar ${product.name} del pedido`}
                     >
                       <Trash2 className="size-4" aria-hidden="true" />

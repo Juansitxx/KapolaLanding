@@ -16,7 +16,7 @@ export function SiteFooter() {
         </div>
 
         <p className="text-sm">
-          © {new Date().getFullYear()} Kapola · {site.slogan} · Ibagué, Colombia
+          © {new Date().getFullYear()} Kapola, Ibagué. {site.slogan}.
         </p>
 
         <div className="flex gap-2">

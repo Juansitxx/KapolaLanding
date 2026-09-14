@@ -2,6 +2,8 @@
 
 import * as m from "motion/react-m";
 
+const EASE_OUT = [0.23, 1, 0.32, 1] as const;
+
 export function Reveal({
   children,
   className,
@@ -14,10 +16,10 @@ export function Reveal({
   return (
     <m.div
       className={className}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, transform: "translateY(16px)" }}
+      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.3, ease: "easeOut", delay }}
+      transition={{ duration: 0.5, ease: EASE_OUT, delay }}
     >
       {children}
     </m.div>
