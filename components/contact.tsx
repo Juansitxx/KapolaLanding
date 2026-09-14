@@ -32,7 +32,7 @@ const info = [
   {
     icon: Wallet,
     title: "Paga como te quede fácil",
-    text: "Efectivo, transferencia, Nequi, Daviplata, tarjeta… aceptamos todos los métodos.",
+    text: "Efectivo, transferencia, Nequi, Daviplata… aceptamos casi todos los métodos.",
   },
   {
     icon: Stamp,
