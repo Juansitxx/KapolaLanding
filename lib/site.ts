@@ -15,8 +15,9 @@ export function formatCOP(value: number) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
 }
 
+// api.whatsapp.com directo: la redirección de wa.me corrompe los emojis en algunos dispositivos
 export function whatsappUrl(text: string) {
-  return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`;
+  return `https://api.whatsapp.com/send?phone=${site.whatsappNumber}&text=${encodeURIComponent(text)}`;
 }
 
 export const greetingWhatsappUrl = whatsappUrl("¡Hola Kapola! Quiero hacer un pedido 🍪");
