@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import logo from "@/public/images/logo.png";
 import { WhatsAppIcon } from "@/components/icons";
+import { SocialLinks } from "@/components/social-links";
 import { greetingWhatsappUrl } from "@/lib/site";
 
 const links = [
@@ -34,15 +35,21 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <a
-          href={greetingWhatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="candy-btn h-11 px-4 text-sm sm:px-5 sm:text-base"
-        >
-          <WhatsAppIcon className="size-5" />
-          <span>WhatsApp</span>
-        </a>
+        <div className="flex items-center gap-1">
+          <SocialLinks
+            className="hidden gap-0 lg:flex"
+            linkClassName="size-10 text-choco hover:bg-blush-strong hover:text-bubblegum-deep"
+          />
+          <a
+            href={greetingWhatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="candy-btn h-11 px-4 text-sm sm:px-5 sm:text-base"
+          >
+            <WhatsAppIcon className="size-5" />
+            <span>WhatsApp</span>
+          </a>
+        </div>
       </div>
     </header>
   );
