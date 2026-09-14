@@ -1,73 +1,113 @@
 # Kapola · Landing page
 
-One-page para Kapola (galletas artesanales, Ibagué). Los clientes arman su pedido y lo envían por WhatsApp.
+Landing one-page de **Kapola**, galletas artesanales en Ibagué. Los clientes arman su pedido en la web y lo envían por WhatsApp con sus datos.
 
-**Stack:** Next.js 16 (App Router) + TypeScript · Tailwind CSS v4 · Motion · shadcn/ui (solo Dialog/Input/Label del pedido). Sin backend: el carrito vive en el estado de React.
+**Producción:** https://kapola-landing.vercel.app
 
-## Desarrollo
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router) + TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com) con tokens de marca en `app/globals.css`
+- [Motion](https://motion.dev) para animaciones cortas y con propósito
+- [shadcn/ui](https://ui.shadcn.com) solo para el formulario del pedido (Dialog, Input, Label)
+- Sin backend: el carrito vive en el estado de React y el pedido se resuelve por WhatsApp
+- Despliegue en [Vercel](https://vercel.com)
+
+## Requisitos
+
+- Node.js 20.9 o superior
+- npm
+- Las imágenes de la marca (no están en el repositorio, ver [Imágenes](#imágenes))
+
+## Puesta en marcha
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run build      # verificación de producción
+npm run assets                    # genera public/images/ e íconos desde assets/
+npm run dev                       # http://localhost:3000
 ```
 
-## Dónde se edita cada cosa
+| Script | Qué hace |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción (verificación antes de desplegar) |
+| `npm run start` | Sirve el build de producción |
+| `npm run lint` | ESLint |
+| `npm run assets` | Genera las imágenes procesadas desde `assets/` |
+
+## Estructura
+
+```
+app/                  layout, página, estilos globales e íconos generados
+components/           secciones de la landing
+  cart/               estado del carrito, barra flotante y formulario del pedido
+  menu/               catálogo y tarjeta de producto
+  ui/                 componentes de shadcn/ui
+data/menu.ts          productos, precios y fotos del menú
+lib/site.ts           WhatsApp, Instagram, horario y formato del mensaje del pedido
+lib/schedule.ts       lógica de abierto/cerrado (hora de Colombia)
+scripts/              procesado de imágenes
+```
+
+### Dónde se edita cada cosa
 
 | Qué | Archivo |
 |---|---|
 | Productos, precios, fotos del menú | `data/menu.ts` |
-| WhatsApp, Instagram, horario, formato del mensaje | `lib/site.ts` |
+| Número de WhatsApp, Instagram, mensaje del pedido | `lib/site.ts` |
+| Horario de atención | `lib/schedule.ts` y `lib/site.ts` |
 | Colores, botones "candy", sombras | `app/globals.css` (`@theme` y `@utility`) |
 | Textos de cada sección | `components/*.tsx` |
-| Recorte/procesado de imágenes | `scripts/process-assets.mjs` |
+| Recortes de las fotos | `scripts/process-assets.mjs` |
 
-### Imágenes
+## Imágenes
 
-> **Las imágenes no están en el repositorio** (`assets/`, `public/images/`, `app/icon.png`, `app/apple-icon.png`, `app/opengraph-image.jpg` están en `.gitignore`). Tras clonar, copia `assets/logo/` y `assets/fotos/` y ejecuta `node scripts/process-assets.mjs`; sin eso el build falla. Por lo mismo, un despliegue en Vercel conectado a GitHub no compilará: usa la CLI (`vercel --prod`) desde este equipo, que sube los archivos locales.
+Las imágenes **no se versionan** para que las fotos del cliente no queden públicas en GitHub. Están en `.gitignore`: `assets/`, `public/images/`, `app/icon.png`, `app/apple-icon.png` y `app/opengraph-image.jpg`.
 
-Las fotos actuales son **capturas de Instagram** recortadas de forma provisional. Cuando lleguen las originales:
+1. Coloca las fuentes originales en `assets/logo/` y `assets/fotos/`.
+2. Ejecuta `npm run assets`. Quita el fondo del logo, recorta la mascota y las fotos, y genera el favicon y la imagen para compartir. Sobrescribe `public/images/`.
+3. Sin este paso el build falla, porque los componentes importan las imágenes de forma estática.
 
-1. Opción rápida: reemplazar el archivo en `public/images/` con el mismo nombre.
-2. Si se cambia un producto de recorte a foto, ajustar `imageStyle: "photo"` en `data/menu.ts`.
-3. `node scripts/process-assets.mjs` regenera todo desde `assets/` (logo sin fondo, mascota, favicon, imagen para compartir en `app/`). **Ojo:** sobrescribe `public/images/`.
+## Flujo de trabajo con ramas
 
-## Despliegue en Vercel
-
-### Opción A: GitHub + Vercel (recomendada: cada push despliega solo)
-
-1. Crear un repositorio en GitHub (puede ser privado) y subir el proyecto:
-   ```bash
-   git init
-   git add .
-   git commit -m "Landing inicial Kapola"
-   git branch -M main
-   git remote add origin https://github.com/<usuario>/kapola-landing.git
-   git push -u origin main
-   ```
-2. Entrar a https://vercel.com/new, iniciar sesión con GitHub e importar el repositorio.
-3. Vercel detecta Next.js solo. No hace falta configurar variables de entorno. Clic en **Deploy**.
-4. En *Settings → Domains* se puede cambiar el subdominio (ej. `kapola.vercel.app`, si está libre).
-
-### Opción B: CLI directa
+| Rama | Propósito |
+|---|---|
+| `main` | **Producción.** Refleja lo que está publicado en Vercel. Solo recibe merges desde `develop`. |
+| `develop` | **Desarrollo.** Integra los cambios antes de pasar a producción. |
+| `feature/<nombre>` | Una rama por cambio, creada desde `develop` (ej. `feature/foto-red-velvet`). |
+| `fix/<nombre>` | Correcciones, también desde `develop`. |
 
 ```bash
-npm i -g vercel
-vercel login
-vercel          # crea el proyecto y una URL de preview
-vercel --prod   # publica la URL oficial
+git checkout develop && git pull
+git checkout -b feature/mi-cambio
+# ... cambios ...
+git commit -m "feat(menu): agrega foto de Red Velvet"
+git push -u origin feature/mi-cambio
+# abrir Pull Request feature/mi-cambio -> develop
+# cuando develop esté probado: Pull Request develop -> main y desplegar
 ```
 
-La imagen para compartir el link (Open Graph) usa automáticamente la URL de producción de Vercel.
+Los mensajes de commit siguen [Conventional Commits](https://www.conventionalcommits.org/es/): `feat`, `fix`, `docs`, `style`, `refactor`, `chore`.
 
-## Checklist antes de compartir el link con el cliente
+## Despliegue
 
-- [ ] **Logo** en PNG transparente o SVG original (el actual se sacó del JPG con fondo blanco).
-- [ ] **Mascota** en PNG/SVG original (la actual está recortada del menú de Instagram, baja resolución).
-- [ ] **Fotos originales** (sin interfaz de Instagram) de: torre con Nutella (hero), Chips Chocolate, Mini galletas, premio.
-- [ ] **Fotos individuales** de Red Velvet, Cheesecake de Maracuyá y Oreo (hoy son recortes circulares del menú gráfico).
-- [ ] Imagen propia para **Galleta de Temporada** (hoy es la galleta "?" del menú).
-- [ ] Galería "Así se vive Kapola": fotos en mejor resolución y **permiso de las personas que aparecen** (clienta en feria, clienta con gorra Dulzura Lovers).
-- [ ] Revisar y aprobar el texto de **Sobre nosotros** (borrador en `components/about.tsx`).
-- [ ] Confirmar el nombre oficial del premio que aparece en el hero y en el pie de foto.
-- [ ] Probar un pedido real desde el celular de alguien de Kapola.
+Como las imágenes no están en GitHub, **Vercel no se conecta al repositorio**: se despliega con la CLI desde un equipo que tenga las imágenes.
+
+```bash
+git checkout main && git pull
+npm run build                      # verificar que compila
+npx vercel deploy --prod           # publica https://kapola-landing.vercel.app
+npx vercel deploy                  # (opcional) URL de preview para revisar antes
+```
+
+`.vercelignore` evita subir las fotos originales de `assets/`. Solo se suben las versiones procesadas.
+
+## Pendientes de contenido
+
+- [ ] Foto propia de **Red Velvet** (hoy es un recorte circular del menú gráfico).
+- [ ] **Logo** y **mascota** en PNG/SVG originales (los actuales se extrajeron de un JPG y de una captura).
+- [ ] Fotos sin el sticker del vaso, que muestra un número distinto al oficial (+57 324 378 6221).
+- [ ] Galería "Así se vive Kapola": mejor resolución y permiso de las personas que aparecen.
+- [ ] Aprobar el texto de **Sobre nosotros** (`components/about.tsx`).
+- [ ] Confirmar el nombre oficial del premio.
+- [ ] Recoger el feedback del cliente sobre la versión publicada.
