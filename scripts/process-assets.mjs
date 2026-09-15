@@ -157,7 +157,8 @@ await saveJpg(crop(GRID, 494, 1215, 245, 282), "meme-perro");
       .png()
       .toBuffer();
 
-  await sharp(await mascot(512)).toFile("app/icon.png");
+  // La mascota mide ~280 px: a 512 solo se agranda y pesa ~400 KB. 192 px con paleta basta.
+  await sharp(await mascot(192)).png({ palette: true }).toFile("app/icon.png");
 
   await sharp({ create: { width: 180, height: 180, channels: 4, background: BLUSH } })
     .composite([{ input: await mascot(150), gravity: "center" }])
