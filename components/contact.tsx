@@ -86,9 +86,6 @@ export function Contact() {
               ))}
             </ul>
           </div>
-          <p className="mt-4 font-bold text-choco-soft">
-            Encuéntranos como {site.instagramHandle} en Instagram y TikTok.
-          </p>
         </Reveal>
 
         <Reveal delay={0.08}>
