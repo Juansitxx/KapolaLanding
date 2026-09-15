@@ -2,7 +2,6 @@ import { CartProvider } from "@/components/cart/cart-provider";
 import { FloatingCart } from "@/components/cart/floating-cart";
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
-import { Inside } from "@/components/inside";
 import { MenuSection } from "@/components/menu/menu-section";
 import { Desserts } from "@/components/desserts";
 import { Gifts } from "@/components/gifts";
@@ -18,7 +17,6 @@ export default function Home() {
       <SiteHeader />
       <main>
         <Hero />
-        <Inside />
         <MenuSection />
         <Desserts />
         <Gifts />

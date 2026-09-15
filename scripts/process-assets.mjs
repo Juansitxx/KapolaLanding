@@ -109,7 +109,8 @@ async function circle(src, cx, cy, r, name) {
 await saveJpg(sharp(PLATO), "plato-surtido");
 
 // Menú (4:3). Los recortes evitan el sticker del vaso cuando se puede.
-await saveJpg(crop(PLATO, 860, 400, 440, 330), "chips-chocolate");
+// Foto del catálogo de Instagram de Kapola: galleta partida con el centro derretido
+await saveJpg(crop(shot("7.52.24 PM (3)"), 80, 446, 400, 300), "chips-chocolate");
 await saveJpg(crop(OREO_LECHE, 480, 20, 720, 540), "oreo");
 await saveJpg(crop(MARACUYA, 0, 520, 660, 495), "cheesecake-maracuya");
 await saveJpg(crop(MINI, 75, 192, 590, 738), "mini-galletas");
@@ -136,10 +137,6 @@ await saveJpg(crop(REGALO_GYM, 0, 130, 1179, 1399).resize(720), "regalo-gym-rat"
 await saveJpg(crop(REGALO_MADRES, 180, 420, 920, 1000).resize(720), "regalo-dia-madres");
 
 await saveJpg(crop(shot("9.57.10 PM (1)"), 90, 240, 1000, 1250).resize(720), "regalo-san-valentin");
-
-// Así es por dentro (capturas de Instagram, sin la interfaz)
-await saveJpg(crop(shot("7.52.24 PM (3)"), 59, 440, 420, 315), "por-dentro-chocolate");
-await saveJpg(crop(shot("7.52.24 PM"), 37, 325, 640, 800).resize(560), "por-dentro-nutella");
 
 // Postres por encargo (4:3)
 await saveJpg(crop(shot("10.35.31 PM"), 100, 330, 920, 690).resize(720), "postre-cheesecake");

@@ -30,8 +30,7 @@ export function Desserts() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="candy-title text-5xl sm:text-6xl">Postres por encargo</h2>
           <p className="mt-5 text-lg text-choco">
-            Además de galletas, hacemos postres para compartir (o para no compartir, no juzgamos).
-            Se piden con anticipación: escríbenos y te contamos tamaños y precios.
+            Se piden con anticipación. Escríbenos y te contamos tamaños y precios.
           </p>
         </Reveal>
 
@@ -75,8 +74,7 @@ export function Desserts() {
                 <Image src={mascota} alt="" sizes="96px" className="w-20 -rotate-6" />
                 <h3 className="font-display text-3xl leading-tight">¿Evento o pedido grande?</h3>
                 <p className="font-bold">
-                  Cumpleaños, oficina, bazar o detalle para tus clientes: lo armamos a tu medida.
-                  Cuéntanos la fecha y la cantidad.
+                  Escríbenos con la fecha y la cantidad y lo armamos contigo.
                 </p>
                 <a
                   href={whatsappUrl("¡Hola Kapola! Quiero cotizar un pedido grande para un evento")}

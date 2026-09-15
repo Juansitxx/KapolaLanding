@@ -14,18 +14,6 @@ export function MenuSection() {
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="candy-title text-5xl sm:text-6xl">El menú</h2>
-          <p className="mt-5 text-lg text-choco">
-            Galletas de 85 gr, crocantes por fuera y suavecitas por dentro. Arma tu pedido aquí y
-            nos llega directo a WhatsApp.
-          </p>
-          <p className="mt-5 inline-flex flex-wrap items-center justify-center gap-2 text-sm font-bold">
-            <span className="rounded-full bg-cream px-3 py-1 text-bubblegum-deep">
-              Galletas para hoy o mañana
-            </span>
-            <span className="rounded-full bg-blush px-3 py-1 text-choco">
-              Postres y pedidos grandes por encargo
-            </span>
-          </p>
         </Reveal>
 
         <Reveal delay={0.05}>

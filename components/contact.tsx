@@ -12,18 +12,18 @@ import { TrackedLink } from "@/components/tracked-link";
 const info = [
   {
     icon: Bike,
-    title: "100% a domicilio",
+    title: "Solo a domicilio",
     text: "No tenemos local de atención al público: trabajamos bajo pedido y te llevamos todo a tu casa.",
   },
   {
     icon: MapPin,
-    title: "Toda la zona urbana de Ibagué",
-    text: "El costo del domicilio depende de tu zona y lo acordamos por WhatsApp.",
+    title: "Llegamos hasta tu zona",
+    text: "Realizamos entregas en la zona urbana, el costo del envío se confirma según tu ubicación.",
   },
   {
     icon: CalendarClock,
-    title: "¿Para cuándo lo quieres?",
-    text: "Galletas para hoy mismo o para mañana. Postres y pedidos grandes, por encargo y con anticipación.",
+    title: "Tiempos de entrega",
+    text: "Preparamos cada pedido con dedicación; algunos se entregan rápido y otros necesitan programación previa.",
   },
   {
     icon: Clock,
@@ -32,7 +32,7 @@ const info = [
   },
   {
     icon: Wallet,
-    title: "Paga como te quede fácil",
+    title: "Formas de pago",
     text: "Efectivo, transferencia, Nequi, Daviplata… aceptamos casi todos los métodos.",
   },
   {
@@ -54,7 +54,7 @@ export function Contact() {
             className="mx-auto w-24 -rotate-6 sm:w-28 lg:mx-0"
           />
           <h2 className="candy-title mt-5 text-5xl sm:text-6xl">
-            No tenemos local… ¡vamos hasta ti!
+            ¡Pide y recibe en casa!
           </h2>
           <OpenStatus className="mt-6" />
 
