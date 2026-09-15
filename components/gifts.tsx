@@ -4,6 +4,7 @@ import { Gift } from "lucide-react";
 import cumpleMama from "@/public/images/regalo-cumple-mama.jpg";
 import gymRat from "@/public/images/regalo-gym-rat.jpg";
 import diaMadres from "@/public/images/regalo-dia-madres.jpg";
+import sanValentin from "@/public/images/regalo-san-valentin.jpg";
 import { Reveal } from "@/components/reveal";
 
 const gifts: { src: StaticImageData; alt: string; caption: string }[] = [
@@ -21,6 +22,11 @@ const gifts: { src: StaticImageData; alt: string; caption: string }[] = [
     src: diaMadres,
     alt: "Caja de galletas con moño rosado y tarjeta por el Día de la Madre",
     caption: "Día de la Madre",
+  },
+  {
+    src: sanValentin,
+    alt: "Caja de galletas Kapola con moño fucsia y tarjeta escrita de San Valentín",
+    caption: "San Valentín",
   },
 ];
 
@@ -54,19 +60,19 @@ export function Gifts() {
           </a>
         </Reveal>
 
-        <ul className="grid grid-cols-3 gap-3 sm:gap-5">
+        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {gifts.map((g, i) => (
             <li key={g.caption}>
               <Reveal delay={i * 0.05}>
                 <figure
                   className={`relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-card ${
-                    i === 1 ? "-rotate-2 sm:-translate-y-4" : "rotate-2"
+                    i % 2 ? "-rotate-2 sm:-translate-y-4" : "rotate-2"
                   }`}
                 >
                   <Image
                     src={g.src}
                     alt={g.alt}
-                    sizes="(min-width: 1024px) 220px, 31vw"
+                    sizes="(min-width: 1024px) 170px, (min-width: 640px) 24vw, 48vw"
                     className="aspect-[4/5] w-full object-cover"
                     placeholder="blur"
                   />

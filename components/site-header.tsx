@@ -8,8 +8,9 @@ import { TrackedLink } from "@/components/tracked-link";
 
 const links = [
   { href: "#menu", label: "Menú" },
+  { href: "#postres", label: "Postres" },
   { href: "#regalos", label: "Regalos" },
-  { href: "#nosotros", label: "Nosotros" },
+  { href: "#preguntas", label: "Preguntas" },
   { href: "#contacto", label: "Contacto" },
 ];
 

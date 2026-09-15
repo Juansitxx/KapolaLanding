@@ -1,9 +1,12 @@
-import Image from "next/image";
-
 import { menu } from "@/data/menu";
-import mascota from "@/public/images/mascota.png";
 import { Reveal } from "@/components/reveal";
 import { ProductCard } from "@/components/menu/product-card";
+
+const steps = [
+  "Agrega tus galletas al pedido",
+  "Pon tu nombre y dirección",
+  "Lo confirmamos por WhatsApp y te lo llevamos",
+];
 
 export function MenuSection() {
   return (
@@ -25,7 +28,21 @@ export function MenuSection() {
           </p>
         </Reveal>
 
-        <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal delay={0.05}>
+          <ol className="mx-auto mt-10 grid max-w-4xl gap-3 sm:grid-cols-3">
+            {steps.map((step, i) => (
+              <li
+                key={step}
+                className="flex items-center gap-3 rounded-2xl border-2 border-dashed border-bubblegum-soft/60 bg-white px-4 py-3"
+              >
+                <span className="candy-tag size-9 shrink-0 justify-center p-0">{i + 1}</span>
+                <span className="text-sm leading-snug font-bold text-choco">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {menu.map((product, i) => (
             <li
               key={product.id}
@@ -38,13 +55,6 @@ export function MenuSection() {
             </li>
           ))}
         </ul>
-
-        <div className="mt-14 flex items-center justify-center gap-4 text-center">
-          <Image src={mascota} alt="" sizes="64px" className="w-14" />
-          <p className="max-w-sm text-left font-bold text-choco-soft">
-            ¿Pedido grande para un evento o un detalle? Escríbenos y lo armamos a tu medida.
-          </p>
-        </div>
       </div>
     </section>
   );

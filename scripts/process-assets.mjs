@@ -135,6 +135,16 @@ await saveJpg(crop(REGALO_CUMPLE_MAMA, 120, 300, 1040, 1100).resize(720), "regal
 await saveJpg(crop(REGALO_GYM, 0, 130, 1179, 1399).resize(720), "regalo-gym-rat");
 await saveJpg(crop(REGALO_MADRES, 180, 420, 920, 1000).resize(720), "regalo-dia-madres");
 
+await saveJpg(crop(shot("9.57.10 PM (1)"), 90, 240, 1000, 1250).resize(720), "regalo-san-valentin");
+
+// Así es por dentro (capturas de Instagram, sin la interfaz)
+await saveJpg(crop(shot("7.52.24 PM (3)"), 59, 440, 420, 315), "por-dentro-chocolate");
+await saveJpg(crop(shot("7.52.24 PM"), 37, 325, 640, 800).resize(560), "por-dentro-nutella");
+
+// Postres por encargo (4:3)
+await saveJpg(crop(shot("10.35.31 PM"), 100, 330, 920, 690).resize(720), "postre-cheesecake");
+await saveJpg(crop(shot("10.35.57 PM"), 73, 740, 807, 605).resize(720), "postre-pave");
+
 // Comunidad
 await saveJpg(crop(STAND_VALIENTES, 200, 640, 800, 960).resize(560), "feria-stand");
 await saveJpg(crop(GRID, 247, 843, 245, 325), "meme-uno");
