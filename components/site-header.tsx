@@ -8,8 +8,9 @@ import { TrackedLink } from "@/components/tracked-link";
 
 const links = [
   { href: "#menu", label: "Menú" },
+  { href: "#postres", label: "Postres" },
   { href: "#regalos", label: "Regalos" },
-  { href: "#nosotros", label: "Nosotros" },
+  { href: "#preguntas", label: "Preguntas" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -21,7 +22,7 @@ export function SiteHeader() {
           <Image src={logo} alt="Kapola" className="h-11 w-auto" sizes="120px" />
         </a>
 
-        <nav aria-label="Secciones" className="hidden md:block">
+        <nav aria-label="Secciones" className="hidden lg:block">
           <ul className="flex items-center gap-1 font-bold text-choco">
             {links.map((l) => (
               <li key={l.href}>
