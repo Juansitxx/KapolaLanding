@@ -22,7 +22,7 @@ export function SiteHeader() {
           <Image src={logo} alt="Kapola" className="h-11 w-auto" sizes="120px" />
         </a>
 
-        <nav aria-label="Secciones" className="hidden lg:block">
+        <nav aria-label="Secciones" className="mr-auto ml-4 hidden lg:block">
           <ul className="flex items-center gap-1 font-bold text-choco">
             {links.map((l) => (
               <li key={l.href}>

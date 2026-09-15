@@ -14,15 +14,16 @@ export function InstagramIcon(props: IconProps) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={2}
+      strokeWidth={2.6}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
       {...props}
     >
-      <rect x="2" y="2" width="20" height="20" rx="5.5" />
-      <circle cx="12" cy="12" r="4.2" />
-      <circle cx="17.6" cy="6.4" r="0.6" fill="currentColor" />
+      {/* Trazo grueso para igualar el peso visual de los íconos rellenos (TikTok, Facebook) */}
+      <rect x="2.3" y="2.3" width="19.4" height="19.4" rx="5.5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1.3" fill="currentColor" stroke="none" />
     </svg>
   );
 }
