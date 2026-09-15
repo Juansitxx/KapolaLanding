@@ -44,7 +44,7 @@ export const menu: Product[] = [
     price: 6000,
     detail: "Galleta de 85 gr",
     image: chipsChocolate,
-    imageAlt: "Galleta de chips de chocolate sobre un plato",
+    imageAlt: "Galleta de chips de chocolate partida por la mitad con el centro de chocolate derretido",
     imageStyle: "photo",
   },
   {
