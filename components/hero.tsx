@@ -23,7 +23,7 @@ export function Hero() {
         <div className="text-center md:text-left">
           <p className="inline-flex items-center gap-2 rounded-full border-2 border-white bg-cream px-4 py-1.5 text-sm font-extrabold text-bubblegum-deep shadow-card">
             <Award className="size-4 shrink-0" aria-hidden="true" />
-            Ganadores del Portafolio de Estímulos Municipales de Juventudes 2026 prueba
+            Ganadores del Portafolio de Estímulos Municipales de Juventudes 2026
           </p>
 
           <h1 className="candy-title mt-6 text-5xl sm:text-6xl lg:text-[4.25rem]">
