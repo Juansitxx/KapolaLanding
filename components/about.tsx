@@ -6,6 +6,14 @@ import feriaValientes from "@/public/images/feria-valientes.jpg";
 import hechoEnCasa from "@/public/images/hecho-en-casa.jpg";
 import { Reveal } from "@/components/reveal";
 
+// Promesa de marca, tal como la define el Manual de marca V1.2026
+const promise = [
+  { name: "Sabor", text: "Sabores deliciosos y especiales que convierten cada antojo en una experiencia." },
+  { name: "Creatividad", text: "Sabores de temporada que sorprenden y conectan con nuestros clientes." },
+  { name: "Experiencia", text: "Cada pedido es un momento para disfrutar, compartir y recordar." },
+  { name: "Corazón", text: "Dedicación, pasión y nuestra esencia tolimense en cada creación." },
+];
+
 const moments = [
   {
     src: feriaValientes,
@@ -84,6 +92,17 @@ export function About() {
               ingredientes y mucho, mucho cariño en cada caja.
             </p>
           </div>
+
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+            {promise.map(({ name, text }) => (
+              <li key={name} className="rounded-2xl bg-blush px-5 py-4">
+                <p className="text-sm font-black tracking-wide text-bubblegum-deep uppercase">
+                  {name}
+                </p>
+                <p className="mt-1 text-sm leading-snug text-ink-soft">{text}</p>
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>

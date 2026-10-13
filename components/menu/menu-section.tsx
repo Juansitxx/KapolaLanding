@@ -17,14 +17,14 @@ export function MenuSection() {
         </Reveal>
 
         <Reveal delay={0.05}>
-          <ol className="mx-auto mt-10 grid max-w-4xl gap-3 sm:grid-cols-3">
+          <ol className="mx-auto mt-10 grid max-w-4xl gap-6 rounded-[2rem] bg-cream px-6 py-7 sm:grid-cols-3 sm:gap-8 sm:px-10">
             {steps.map((step, i) => (
               <li
                 key={step}
-                className="flex items-center gap-3 rounded-2xl border-2 border-dashed border-bubblegum-soft/60 bg-white px-4 py-3"
+                className="flex items-baseline gap-3 sm:flex-col sm:items-start sm:gap-3"
               >
-                <span className="candy-tag size-9 shrink-0 justify-center p-0">{i + 1}</span>
-                <span className="text-sm leading-snug font-bold text-ink">{step}</span>
+                <span className="candy-numeral shrink-0 text-4xl sm:text-5xl">0{i + 1}</span>
+                <span className="text-sm leading-snug font-bold text-ink sm:text-base">{step}</span>
               </li>
             ))}
           </ol>

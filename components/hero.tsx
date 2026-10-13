@@ -60,7 +60,13 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto w-full max-w-md md:max-w-lg">
-          <div className="relative rotate-2 overflow-hidden rounded-[2.5rem] border-[6px] border-white shadow-pop">
+          {/* Plano de color detrás de la foto, como las composiciones del manual */}
+          <div
+            aria-hidden="true"
+            className="absolute -inset-3 -rotate-3 rounded-[3rem] bg-bubblegum sm:-inset-4"
+          />
+
+          <div className="relative rotate-2 overflow-hidden rounded-[2.5rem] border-[6px] border-white">
             <Image
               src={plato}
               alt="Plato con galletas Kapola de Oreo, red velvet, chips de chocolate y chips blancos junto a un vaso de leche"

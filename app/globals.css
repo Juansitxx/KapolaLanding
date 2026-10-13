@@ -181,15 +181,25 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Títulos de sección: palo seco pesado, como las cabeceras del manual.
-   La letra display queda reservada al eslogan y frases destacadas. */
+/* Títulos de sección: palo seco pesado en mayúscula, como las cabeceras del
+   manual. La letra display queda reservada al eslogan y frases destacadas. */
 @utility candy-title {
   font-family: var(--font-sans);
   font-weight: 900;
-  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
   color: var(--color-bubblegum);
-  line-height: 1.05;
+  line-height: 1;
   text-wrap: balance;
+}
+
+/* Numeral de apertura, como los "01/02/03" de las portadillas del manual */
+@utility candy-numeral {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.85;
+  color: var(--color-bubblegum);
 }
 
 @layer base {

@@ -5,6 +5,7 @@ import { Hero } from "@/components/hero";
 import { MenuSection } from "@/components/menu/menu-section";
 import { Desserts } from "@/components/desserts";
 import { Gifts } from "@/components/gifts";
+import { SloganBand } from "@/components/slogan-band";
 import { About } from "@/components/about";
 import { Community } from "@/components/community";
 import { Faq } from "@/components/faq";
@@ -20,6 +21,7 @@ export default function Home() {
         <MenuSection />
         <Desserts />
         <Gifts />
+        <SloganBand />
         <About />
         <Community />
         <Faq />
