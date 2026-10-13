@@ -1,6 +1,6 @@
 export const site = {
   name: "Kapola",
-  slogan: "El sabor que te llena el corazón",
+  slogan: "El sabor que llena tu corazón",
   whatsappNumber: "573243786221",
   whatsappDisplay: "+57 324 378 6221",
   instagramHandle: "@kapola_ibague",

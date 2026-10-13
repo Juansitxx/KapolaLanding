@@ -19,11 +19,11 @@ const tiles: Tile[] = [
 
 export function Community() {
   return (
-    <section className="bg-background px-4 py-20 sm:px-6 md:py-28">
+    <section className="bg-blush px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="candy-title text-5xl sm:text-6xl">Así se vive Kapola</h2>
-          <p className="mt-5 text-lg text-choco">
+          <p className="mt-5 text-lg text-ink">
             Ferias, antojos y uno que otro meme. Lo que pasa en nuestras redes, no se queda en
             nuestras redes.
           </p>
@@ -34,7 +34,7 @@ export function Community() {
             <li key={t.alt}>
               <Reveal delay={i * 0.05}>
                 <figure
-                  className={`relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-card ${
+                  className={`relative overflow-hidden rounded-3xl border-4 border-blush-strong bg-white shadow-card ${
                     i % 2 ? "rotate-1" : "-rotate-1"
                   }`}
                 >
@@ -58,7 +58,7 @@ export function Community() {
                 href={site.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-full min-h-32 flex-col items-center justify-center gap-2 rounded-3xl border-4 border-white bg-bubblegum p-4 text-center text-white shadow-card transition hover:-translate-y-1"
+                className="flex h-full min-h-32 flex-col items-center justify-center gap-2 rounded-3xl bg-bubblegum-fill p-4 text-center text-white shadow-card transition hover:-translate-y-1"
               >
                 <InstagramIcon className="size-10" />
                 <span className="font-display text-2xl leading-tight">Síguenos</span>

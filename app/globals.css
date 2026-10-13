@@ -5,20 +5,27 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-blush: #fde4ee;
-  --color-blush-strong: #fbcfe0;
-  --color-bubblegum-soft: #ee6ba5;
-  --color-bubblegum: #d6166f;
-  --color-bubblegum-deep: #9e0d52;
-  --color-cream: #fbf6d3;
-  --color-choco: #4a2a20;
-  --color-choco-soft: #6e4a3d;
+  /* Colores oficiales del Manual de marca V1.2026 */
+  --color-bubblegum: #d75c77;
+  --color-bubblegum-soft: #db7d97;
+  --color-cream: #ffeb99;
 
-  --font-display: var(--font-lobster), "Brush Script MT", cursive;
-  --font-sans: var(--font-nunito), ui-rounded, "Segoe UI", sans-serif;
+  /* Derivados de UI: el manual no define oscuro, tintes ni estados interactivos.
+     Todos salen del rosa oficial y cumplen contraste AA (ver docs/).
+     -fill: rellenos con texto blanco. -deep: texto e íconos sobre fondos claros. */
+  --color-bubblegum-fill: #c44761;
+  --color-bubblegum-deep: #a8374f;
+  --color-blush: #fbe9ee;
+  --color-blush-strong: #f6dbe3;
+  --color-ink: #54182c;
+  --color-ink-soft: #7a4455;
 
-  --shadow-card: 0 18px 36px -22px rgb(158 13 82 / 0.45);
-  --shadow-pop: 0 24px 48px -20px rgb(158 13 82 / 0.5);
+  /* Las oficiales (Hug Me Tight / Branding) entran al definir sus variables en layout.tsx */
+  --font-display: var(--font-hug-me-tight, var(--font-lobster)), "Brush Script MT", cursive;
+  --font-sans: var(--font-branding, var(--font-nunito)), ui-rounded, "Segoe UI", sans-serif;
+
+  --shadow-card: 0 10px 24px -18px rgb(84 24 44 / 0.35);
+  --shadow-pop: 0 16px 36px -22px rgb(84 24 44 / 0.4);
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -45,20 +52,21 @@
 }
 
 :root {
-  --background: #fff7fa;
-  --foreground: var(--color-choco);
-  --popover: #fff7fa;
-  --popover-foreground: var(--color-choco);
-  --primary: var(--color-bubblegum);
+  --background: #ffffff;
+  --foreground: var(--color-ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-ink);
+  /* El rosa oficial no alcanza 4.5:1 con texto blanco: los rellenos usan el derivado */
+  --primary: var(--color-bubblegum-fill);
   --primary-foreground: #ffffff;
   --secondary: var(--color-blush);
-  --secondary-foreground: var(--color-choco);
+  --secondary-foreground: var(--color-ink);
   --muted: var(--color-blush);
-  --muted-foreground: var(--color-choco-soft);
+  --muted-foreground: var(--color-ink-soft);
   --destructive: #b42318;
-  --border: #f3c3d6;
-  --input: #e9adc6;
-  --ring: var(--color-bubblegum);
+  --border: #f2d8de;
+  --input: #bd7a8f;
+  --ring: var(--color-bubblegum-deep);
   --radius: 1rem;
 }
 
@@ -83,154 +91,105 @@
   --radius-xl: calc(var(--radius) * 1.4);
 }
 
-/* Botón "candy": relleno glossy, contorno crema y base 3D como el logo */
+/* Botón principal: relleno plano, sin degradado ni base 3D */
 @utility candy-btn {
-  position: relative;
-  white-space: nowrap;
-  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  white-space: nowrap;
   border-radius: 9999px;
-  border: 3px solid var(--color-cream);
-  background: linear-gradient(180deg, #e2327f 0%, var(--color-bubblegum) 55%, #b80f5c 100%);
+  background-color: var(--color-bubblegum-fill);
   color: #fff;
   font-weight: 800;
-  text-shadow: 0 1px 0 rgb(120 8 60 / 0.45);
-  box-shadow:
-    0 5px 0 0 var(--color-bubblegum-deep),
-    0 14px 24px -10px rgb(214 22 111 / 0.6);
   transition:
-    transform 160ms var(--ease-out),
-    box-shadow 160ms var(--ease-out),
-    filter 160ms var(--ease-out);
+    background-color 160ms var(--ease-out),
+    transform 160ms var(--ease-out);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 3px 14% auto;
-    height: 42%;
-    border-radius: 9999px;
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.55), rgb(255 255 255 / 0));
-    pointer-events: none;
-  }
-
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
+      background-color: var(--color-bubblegum-deep);
     }
   }
 
   &:active {
-    transform: translateY(4px);
-    box-shadow:
-      0 1px 0 0 var(--color-bubblegum-deep),
-      0 6px 12px -8px rgb(214 22 111 / 0.6);
+    transform: scale(0.98);
   }
 
   &:focus-visible {
-    outline: 3px solid var(--color-bubblegum-deep);
+    outline: 3px solid var(--color-ink);
     outline-offset: 3px;
   }
 
   &:disabled {
     cursor: not-allowed;
-    filter: grayscale(0.6);
-    opacity: 0.55;
+    opacity: 0.5;
     transform: none;
-    box-shadow: 0 5px 0 0 var(--color-bubblegum-deep);
   }
 }
 
-/* Variante clara: para acciones secundarias */
+/* Variante secundaria: contorno plano sobre blanco */
 @utility candy-btn-soft {
-  position: relative;
-  white-space: nowrap;
-  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  white-space: nowrap;
   border-radius: 9999px;
-  border: 3px solid #fff;
-  background: linear-gradient(180deg, #fffdf0 0%, var(--color-cream) 100%);
+  border: 2px solid var(--color-bubblegum-deep);
+  background-color: #fff;
   color: var(--color-bubblegum-deep);
   font-weight: 800;
-  box-shadow:
-    0 5px 0 0 #f1a7c8,
-    0 14px 24px -12px rgb(158 13 82 / 0.4);
   transition:
-    transform 160ms var(--ease-out),
-    box-shadow 160ms var(--ease-out);
+    background-color 160ms var(--ease-out),
+    transform 160ms var(--ease-out);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      transform: translateY(-1px);
+      background-color: var(--color-blush-strong);
     }
   }
 
   &:active {
-    transform: translateY(4px);
-    box-shadow: 0 1px 0 0 #f1a7c8;
+    transform: scale(0.98);
   }
 
   &:focus-visible {
-    outline: 3px solid var(--color-bubblegum-deep);
+    outline: 3px solid var(--color-ink);
     outline-offset: 3px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 }
 
-/* Etiqueta de precio tipo caramelo */
+/* Etiqueta de precio: amarillo de marca, sin relieve */
 @utility candy-tag {
-  position: relative;
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
   padding: 0.2rem 0.8rem;
-  background: linear-gradient(180deg, #f58bbb 0%, var(--color-bubblegum-soft) 100%);
-  color: #5c0631;
+  background-color: var(--color-cream);
+  color: var(--color-bubblegum-deep);
   font-weight: 900;
   font-variant-numeric: tabular-nums;
-  box-shadow:
-    inset 0 2px 0 rgb(255 255 255 / 0.55),
-    inset 0 -2px 0 rgb(158 13 82 / 0.25),
-    0 3px 0 var(--color-bubblegum-deep);
 }
 
-/* Títulos con contorno crema y sombra rosada, como el wordmark */
+/* Títulos de sección: palo seco pesado, como las cabeceras del manual.
+   La letra display queda reservada al eslogan y frases destacadas. */
 @utility candy-title {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
+  font-weight: 900;
+  letter-spacing: -0.015em;
   color: var(--color-bubblegum);
-  line-height: 1.08;
+  line-height: 1.05;
   text-wrap: balance;
-  text-shadow:
-    2px 0 0 var(--color-cream),
-    -2px 0 0 var(--color-cream),
-    0 2px 0 var(--color-cream),
-    0 -2px 0 var(--color-cream),
-    2px 2px 0 var(--color-cream),
-    -2px 2px 0 var(--color-cream),
-    2px -2px 0 var(--color-cream),
-    -2px -2px 0 var(--color-cream),
-    0 6px 0 #f1a7c8;
-}
-
-/* Vidrio: solo header y carrito flotante (costo en celulares gama media) */
-@utility glass {
-  background: rgb(255 247 250 / 0.72);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  backdrop-filter: blur(14px) saturate(1.4);
-  border: 1px solid rgb(255 255 255 / 0.7);
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.9),
-    0 12px 32px -16px rgb(158 13 82 / 0.35);
 }
 
 @layer base {
@@ -247,7 +206,7 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    caret-color: var(--color-bubblegum);
+    caret-color: var(--color-bubblegum-deep);
   }
 
   p {
@@ -255,12 +214,12 @@
   }
 
   ::selection {
-    background: var(--color-bubblegum-soft);
+    background: var(--color-bubblegum-deep);
     color: #fff;
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-bubblegum-deep);
+    outline: 3px solid var(--color-ink);
     outline-offset: 3px;
     border-radius: 0.75rem;
   }
@@ -269,7 +228,7 @@
     text-underline-offset: 0.2em;
   }
 
-  /* Menos movimiento: se quitan desplazamientos y bucles, se conservan los cambios de color/opacidad */
+  /* Menos movimiento: se quitan desplazamientos y bucles, se conservan los cambios de color */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -282,7 +241,7 @@
 
     .candy-btn,
     .candy-btn-soft {
-      transition-property: filter, box-shadow;
+      transition-property: background-color, color;
     }
   }
 }

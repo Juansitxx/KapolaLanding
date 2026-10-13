@@ -16,14 +16,14 @@ const links = [
 export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-6">
-      <div className="glass relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 rounded-full pr-2 pl-4 sm:pl-6">
-        <a href="#inicio" className="shrink-0 rounded-full focus-visible:outline-3 focus-visible:outline-bubblegum-deep">
+      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 rounded-full border border-blush-strong bg-white pr-2 pl-4 shadow-card sm:pl-6">
+        <a href="#inicio" className="shrink-0 rounded-full">
           <Image src={logo} alt="Kapola" className="h-11 w-auto" sizes="120px" />
         </a>
 
         {/* Centrado respecto a la barra: logo y WhatsApp miden parecido, los huecos quedan simétricos */}
         <nav aria-label="Secciones" className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
-          <ul className="flex items-center gap-1 font-bold text-choco">
+          <ul className="flex items-center gap-1 font-bold text-ink">
             {links.map((l) => (
               <li key={l.href}>
                 <a

@@ -2,7 +2,7 @@
 
 Landing one-page de **Kapola**, galletas artesanales en Ibagué. Los clientes arman su pedido en la web y lo envían por WhatsApp con sus datos.
 
-**Producción:** https://kapola-landing.vercel.app
+**Producción:** https://kapola.tech
 
 ## Stack
 
@@ -117,7 +117,7 @@ Como las imágenes no están en GitHub, **Vercel no se conecta al repositorio**:
 npx vercel login                   # solo la primera vez en cada equipo
 git checkout main && git pull
 npm run build                      # verificar que compila
-npx vercel deploy --prod           # publica https://kapola-landing.vercel.app
+npx vercel deploy --prod           # publica https://kapola.tech
 npx vercel deploy                  # (opcional) URL de preview para revisar antes
 ```
 

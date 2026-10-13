@@ -12,29 +12,29 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-blush px-4 pt-28 pb-20 sm:px-6 md:pt-32 md:pb-28"
+      className="relative overflow-hidden bg-background px-4 pt-28 pb-20 sm:px-6 md:pt-32 md:pb-28"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-60 [background-image:radial-gradient(#f7b3cf_1.5px,transparent_1.5px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
+        className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(#eec6d1_1.5px,transparent_1.5px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
       />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[1.05fr_1fr]">
         <div className="text-center md:text-left">
-          <p className="inline-flex items-center gap-2 rounded-full border-2 border-white bg-cream px-4 py-1.5 text-sm font-extrabold text-bubblegum-deep shadow-card">
+          <p className="inline-flex items-center gap-2 rounded-full bg-cream px-4 py-1.5 text-sm font-extrabold text-ink">
             <Award className="size-4 shrink-0" aria-hidden="true" />
             Ganadores del Portafolio de Estímulos Municipales de Juventudes 2026
           </p>
 
-          <h1 className="candy-title mt-6 text-5xl sm:text-6xl lg:text-[4.25rem]">
-            El sabor que te llena el{" "}
+          <h1 className="mt-6 font-display text-5xl leading-[1.08] text-balance text-bubblegum sm:text-6xl lg:text-[4.25rem]">
+            El sabor que llena tu{" "}
             <span className="relative inline-block">
               corazón
               <Swoosh className="absolute -bottom-3 left-0 h-4 w-full text-bubblegum-soft" />
             </span>
           </h1>
 
-          <p className="mx-auto mt-8 max-w-md text-lg leading-relaxed text-choco md:mx-0">
+          <p className="mx-auto mt-8 max-w-md text-lg leading-relaxed text-ink md:mx-0">
             Galletas gorditas con el centro derretido, hechas en Ibagué y llevadas hasta tu puerta.
             Advertencia: una no alcanza.
           </p>
@@ -60,7 +60,7 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto w-full max-w-md md:max-w-lg">
-          <div className="relative rotate-2 overflow-hidden rounded-[2.5rem] border-[6px] border-cream shadow-pop">
+          <div className="relative rotate-2 overflow-hidden rounded-[2.5rem] border-[6px] border-white shadow-pop">
             <Image
               src={plato}
               alt="Plato con galletas Kapola de Oreo, red velvet, chips de chocolate y chips blancos junto a un vaso de leche"
@@ -72,7 +72,7 @@ export function Hero() {
             />
           </div>
 
-          <p className="absolute -top-4 -right-2 rotate-6 animate-pop-in rounded-2xl border-[3px] border-white bg-bubblegum px-4 py-2 font-display text-xl text-white shadow-card [animation-delay:350ms] sm:-right-6">
+          <p className="absolute -top-4 -right-2 rotate-6 animate-pop-in rounded-2xl border-[3px] border-white bg-cream px-4 py-2 font-display text-xl text-ink shadow-card [animation-delay:350ms] sm:-right-6">
             ¡Recién horneadas!
           </p>
 

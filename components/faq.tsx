@@ -47,25 +47,25 @@ const jsonLd = {
 
 export function Faq() {
   return (
-    <section id="preguntas" className="bg-blush px-4 py-20 sm:px-6 md:py-28">
+    <section id="preguntas" className="bg-background px-4 py-20 sm:px-6 md:py-28">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mx-auto max-w-3xl">
         <Reveal className="text-center">
           <h2 className="candy-title text-5xl sm:text-6xl">Preguntas frecuentes</h2>
-          <p className="mt-5 text-lg text-choco">Lo que más nos preguntan por WhatsApp, resuelto aquí.</p>
+          <p className="mt-5 text-lg text-ink">Lo que más nos preguntan por WhatsApp, resuelto aquí.</p>
         </Reveal>
 
         <Reveal delay={0.05}>
-          <div className="mt-12 divide-y-2 divide-dashed divide-bubblegum-soft/40 rounded-[2rem] border-[3px] border-white bg-background px-5 shadow-pop sm:px-8">
+          <div className="mt-12 divide-y-2 divide-dashed divide-bubblegum-soft/40 rounded-[2rem] border-[3px] border-blush-strong bg-background px-5 shadow-pop sm:px-8">
             {faqs.map(({ q, a }) => (
               <details key={q} className="group">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-black text-choco [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-black text-ink [&::-webkit-details-marker]:hidden">
                   {q}
                   <span className="grid size-9 shrink-0 place-items-center rounded-full bg-cream text-bubblegum-deep transition-transform duration-200 group-open:rotate-45">
                     <Plus className="size-5" aria-hidden="true" />
                   </span>
                 </summary>
-                <p className="-mt-1 pb-5 text-choco-soft">{a}</p>
+                <p className="-mt-1 pb-5 text-ink-soft">{a}</p>
               </details>
             ))}
           </div>

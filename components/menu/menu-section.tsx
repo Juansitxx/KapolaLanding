@@ -10,7 +10,7 @@ const steps = [
 
 export function MenuSection() {
   return (
-    <section id="menu" className="relative bg-background px-4 py-20 sm:px-6 md:py-28">
+    <section id="menu" className="relative bg-blush px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="candy-title text-5xl sm:text-6xl">El menú</h2>
@@ -24,7 +24,7 @@ export function MenuSection() {
                 className="flex items-center gap-3 rounded-2xl border-2 border-dashed border-bubblegum-soft/60 bg-white px-4 py-3"
               >
                 <span className="candy-tag size-9 shrink-0 justify-center p-0">{i + 1}</span>
-                <span className="text-sm leading-snug font-bold text-choco">{step}</span>
+                <span className="text-sm leading-snug font-bold text-ink">{step}</span>
               </li>
             ))}
           </ol>

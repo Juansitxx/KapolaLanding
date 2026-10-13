@@ -24,7 +24,7 @@ export function FloatingCart() {
             transition={{ type: "spring", stiffness: 380, damping: 30 }}
             className="fixed inset-x-3 bottom-3 z-40 sm:inset-x-auto sm:right-6 sm:bottom-6"
           >
-            <div className="glass flex items-center gap-3 rounded-full p-2 pl-3 sm:gap-5">
+            <div className="flex items-center gap-3 rounded-full border border-blush-strong bg-white p-2 pl-3 shadow-pop sm:gap-5">
               <m.span
                 key={addedTick}
                 initial={{ scale: 1 }}
@@ -34,16 +34,16 @@ export function FloatingCart() {
                 aria-hidden="true"
               >
                 <ShoppingBag className="size-6" />
-                <span className="absolute -top-1 -right-1 grid min-w-6 place-items-center rounded-full border-2 border-white bg-bubblegum px-1 text-xs font-black text-white">
+                <span className="absolute -top-1 -right-1 grid min-w-6 place-items-center rounded-full border-2 border-white bg-bubblegum-fill px-1 text-xs font-black text-white">
                   {count}
                 </span>
               </m.span>
 
               <p className="min-w-0 flex-1 leading-tight" aria-live="polite">
-                <span className="block text-sm font-bold text-choco-soft">
+                <span className="block text-sm font-bold text-ink-soft">
                   {count} {count === 1 ? "producto" : "productos"}
                 </span>
-                <span className="block text-lg font-black text-choco">{formatCOP(subtotal)}</span>
+                <span className="block text-lg font-black text-ink">{formatCOP(subtotal)}</span>
               </p>
 
               <button

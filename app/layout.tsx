@@ -6,6 +6,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import "./globals.css";
 
+// Provisionales: al llegar los archivos de Hug Me Tight y Branding con licencia web se declaran
+// con next/font/local como --font-hug-me-tight y --font-branding, que globals.css ya prefiere.
 const lobster = Lobster({
   variable: "--font-lobster",
   subsets: ["latin"],
@@ -20,7 +22,7 @@ const nunito = Nunito({
 });
 
 const description =
-  "Galletas artesanales y postres en Ibagué con domicilio. Arma tu pedido y envíalo por WhatsApp. El sabor que te llena el corazón.";
+  "Galletas artesanales y postres en Ibagué con domicilio. Arma tu pedido y envíalo por WhatsApp. El sabor que llena tu corazón.";
 
 const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
   title: "Kapola · Galletas artesanales en Ibagué",
   description,
   openGraph: {
-    title: "Kapola · El sabor que te llena el corazón",
+    title: "Kapola · El sabor que llena tu corazón",
     description,
     locale: "es_CO",
     type: "website",
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fde4ee",
+  themeColor: "#ffffff",
 };
 
 const jsonLd = {

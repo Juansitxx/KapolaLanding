@@ -82,15 +82,15 @@ export function OrderDialog({
       }}
     >
       <DialogContent
-        className="top-auto bottom-0 left-0 max-h-[92dvh] max-w-none translate-x-0 translate-y-0 gap-0 overflow-y-auto rounded-t-[2rem] rounded-b-none bg-background shadow-[inset_0_4px_0_var(--color-cream),0_-12px_40px_-12px_rgb(158_13_82/0.35)] p-0 text-base ring-0 data-open:slide-in-from-bottom-10 data-open:zoom-in-100 data-closed:slide-out-to-bottom-10 data-closed:zoom-out-100 sm:top-1/2 sm:bottom-auto sm:left-1/2 sm:max-w-md sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[2rem] sm:shadow-[inset_0_0_0_4px_var(--color-cream),0_24px_48px_-20px_rgb(158_13_82/0.5)] sm:data-open:slide-in-from-bottom-4 [&_[data-slot=dialog-close]]:top-4 [&_[data-slot=dialog-close]]:right-4 [&_[data-slot=dialog-close]]:size-10 [&_[data-slot=dialog-close]]:rounded-full [&_[data-slot=dialog-close]]:bg-blush"
+        className="top-auto bottom-0 left-0 max-h-[92dvh] max-w-none translate-x-0 translate-y-0 gap-0 overflow-y-auto rounded-t-[2rem] rounded-b-none border border-blush-strong bg-background p-0 text-base shadow-[0_-12px_32px_-16px_rgb(84_24_44/0.3)] ring-0 data-open:slide-in-from-bottom-10 data-open:zoom-in-100 data-closed:slide-out-to-bottom-10 data-closed:zoom-out-100 sm:top-1/2 sm:bottom-auto sm:left-1/2 sm:max-w-md sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[2rem] sm:shadow-[0_24px_48px_-24px_rgb(84_24_44/0.35)] sm:data-open:slide-in-from-bottom-4 [&_[data-slot=dialog-close]]:top-4 [&_[data-slot=dialog-close]]:right-4 [&_[data-slot=dialog-close]]:size-10 [&_[data-slot=dialog-close]]:rounded-full [&_[data-slot=dialog-close]]:bg-blush-strong"
       >
         <DialogHeader className="flex-row items-center gap-3 px-5 pt-5 pb-3 pr-16">
           <Image src={mascota} alt="" sizes="48px" className="w-12" />
           <div>
-            <DialogTitle className="font-display text-3xl font-normal text-bubblegum">
+            <DialogTitle className="text-2xl font-black text-bubblegum">
               Tu pedido
             </DialogTitle>
-            <DialogDescription className="text-choco-soft">
+            <DialogDescription className="text-ink-soft">
               Revisa, completa tus datos y te llevamos al chat.
             </DialogDescription>
           </div>
@@ -98,7 +98,7 @@ export function OrderDialog({
 
         {empty ? (
           <div className="px-5 pt-4 pb-8 text-center">
-            <p className="text-lg font-bold text-choco">Tu pedido está vacío… y la galleta está triste.</p>
+            <p className="text-lg font-bold text-ink">Tu pedido está vacío… y la galleta está triste.</p>
             <button
               type="button"
               className="candy-btn mt-5 h-12 px-6"
@@ -121,10 +121,10 @@ export function OrderDialog({
                 >
                   <div className="flex items-center gap-3 border-b-2 border-dashed border-border py-3">
                     <div className="min-w-0 flex-1">
-                      <p className="leading-tight font-black text-choco">{product.name}</p>
-                      <p className="text-sm text-choco-soft">
+                      <p className="leading-tight font-black text-ink">{product.name}</p>
+                      <p className="text-sm text-ink-soft">
                         {formatCOP(product.price)} c/u ·{" "}
-                        <span className="font-bold text-choco">
+                        <span className="font-bold text-ink">
                           {formatCOP(product.price * quantity)}
                         </span>
                       </p>
@@ -139,7 +139,7 @@ export function OrderDialog({
                     <button
                       type="button"
                       onClick={() => setQuantity(product.id, 0)}
-                      className="grid size-11 shrink-0 place-items-center rounded-full text-choco-soft transition-colors hover:bg-blush hover:text-destructive"
+                      className="grid size-11 shrink-0 place-items-center rounded-full text-ink-soft transition-colors hover:bg-blush-strong hover:text-destructive"
                       aria-label={`Eliminar ${product.name} del pedido`}
                     >
                       <Trash2 className="size-4" aria-hidden="true" />
@@ -156,7 +156,7 @@ export function OrderDialog({
             <span className="grid size-10 shrink-0 place-items-center rounded-full bg-cream text-bubblegum-deep">
               <Milk className="size-5" aria-hidden="true" />
             </span>
-            <p className="min-w-0 flex-1 text-sm leading-snug text-choco">
+            <p className="min-w-0 flex-1 text-sm leading-snug text-ink">
               <strong className="block">¿Le agregas leche?</strong>
               {milk.detail}
             </p>
@@ -172,12 +172,12 @@ export function OrderDialog({
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-5 pt-4 pb-6">
           <div className="flex items-baseline justify-between">
-            <span className="font-bold text-choco-soft">Total de productos</span>
-            <span className="text-2xl font-black text-choco">{formatCOP(subtotal)}</span>
+            <span className="font-bold text-ink-soft">Total de productos</span>
+            <span className="text-2xl font-black text-ink">{formatCOP(subtotal)}</span>
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="order-name" className="text-base font-extrabold text-choco">
+            <Label htmlFor="order-name" className="text-base font-extrabold text-ink">
               ¿A nombre de quién?
             </Label>
             <Input
@@ -194,7 +194,7 @@ export function OrderDialog({
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="order-address" className="text-base font-extrabold text-choco">
+            <Label htmlFor="order-address" className="text-base font-extrabold text-ink">
               Dirección de entrega
             </Label>
             <Input
@@ -217,14 +217,14 @@ export function OrderDialog({
                   type="checkbox"
                   checked={wantsCard}
                   onChange={(e) => setWantsCard(e.target.checked)}
-                  className="mt-0.5 size-5 shrink-0 accent-bubblegum"
+                  className="mt-0.5 size-5 shrink-0 accent-bubblegum-deep"
                 />
                 <span>
-                  <span className="flex items-center gap-1.5 font-extrabold text-choco">
+                  <span className="flex items-center gap-1.5 font-extrabold text-ink">
                     <Gift className="size-4 text-bubblegum" aria-hidden="true" />
                     ¿Es un regalo? Agrega una tarjeta
                   </span>
-                  <span className="block text-sm text-choco-soft">
+                  <span className="block text-sm text-ink-soft">
                     Gratis con tu {cardProduct.name}. Va con tu mensaje en la tarjeta.
                   </span>
                 </span>
@@ -242,7 +242,7 @@ export function OrderDialog({
                     <div className="grid gap-3 pt-4 pb-1">
                       <div className="grid grid-cols-2 gap-3">
                         <div className="grid gap-1.5">
-                          <Label htmlFor="card-to" className="font-extrabold text-choco">
+                          <Label htmlFor="card-to" className="font-extrabold text-ink">
                             Para
                           </Label>
                           <Input
@@ -256,8 +256,8 @@ export function OrderDialog({
                           />
                         </div>
                         <div className="grid gap-1.5">
-                          <Label htmlFor="card-from" className="font-extrabold text-choco">
-                            De <span className="font-normal text-choco-soft">(opcional)</span>
+                          <Label htmlFor="card-from" className="font-extrabold text-ink">
+                            De <span className="font-normal text-ink-soft">(opcional)</span>
                           </Label>
                           <Input
                             id="card-from"
@@ -270,7 +270,7 @@ export function OrderDialog({
                         </div>
                       </div>
                       <div className="grid gap-1.5">
-                        <Label htmlFor="card-message" className="font-extrabold text-choco">
+                        <Label htmlFor="card-message" className="font-extrabold text-ink">
                           Mensaje
                         </Label>
                         <textarea
@@ -283,7 +283,7 @@ export function OrderDialog({
                           placeholder="¡Feliz cumple! Para la mejor mamá, unas deliciosas galletas"
                           className="w-full resize-none rounded-2xl border-2 border-input bg-white px-3 py-2 text-base outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
                         />
-                        <span className="text-right text-xs text-choco-soft" aria-live="polite">
+                        <span className="text-right text-xs text-ink-soft" aria-live="polite">
                           {card.message.length}/{CARD_MAX}
                         </span>
                       </div>
@@ -294,7 +294,7 @@ export function OrderDialog({
             </div>
           )}
 
-          <p className="flex gap-2 rounded-2xl bg-cream px-4 py-3 text-sm text-choco">
+          <p className="flex gap-2 rounded-2xl bg-cream px-4 py-3 text-sm text-ink">
             <Bike className="mt-0.5 size-4 shrink-0 text-bubblegum-deep" aria-hidden="true" />
             <span>
               Puedes pedir tus galletas para hoy mismo o para mañana. El domicilio se paga aparte:
@@ -303,7 +303,7 @@ export function OrderDialog({
           </p>
 
           {shopStatus && shopStatus !== "open" && (
-            <p className="rounded-2xl bg-blush px-4 py-3 text-sm text-choco">
+            <p className="rounded-2xl bg-blush-strong px-4 py-3 text-sm text-ink">
               <strong>{statusText[shopStatus]}.</strong> Igual puedes dejarnos tu pedido y te
               respondemos apenas abramos.
             </p>

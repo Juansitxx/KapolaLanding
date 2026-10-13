@@ -24,13 +24,13 @@ export function OpenStatus({ className }: { className?: string }) {
     <span
       className={cn(
         "inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-extrabold",
-        open ? "bg-[#dcf5e3] text-[#14612f]" : "bg-cream text-choco",
+        open ? "bg-[#dcf5e3] text-[#14612f]" : "bg-cream text-ink",
         className,
       )}
     >
       <span
         aria-hidden="true"
-        className={cn("size-2.5 rounded-full", open ? "animate-pulse bg-[#1f9d4c]" : "bg-choco-soft")}
+        className={cn("size-2.5 rounded-full", open ? "animate-pulse bg-[#1f9d4c]" : "bg-ink-soft")}
       />
       {statusText[status]}
     </span>

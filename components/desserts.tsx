@@ -25,11 +25,11 @@ const desserts: { name: string; detail: string; src: StaticImageData; alt: strin
 
 export function Desserts() {
   return (
-    <section id="postres" className="bg-blush px-4 py-20 sm:px-6 md:py-28">
+    <section id="postres" className="bg-background px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="candy-title text-5xl sm:text-6xl">Postres por encargo</h2>
-          <p className="mt-5 text-lg text-choco">
+          <p className="mt-5 text-lg text-ink">
             Se piden con anticipación. Escríbenos y te contamos tamaños y precios.
           </p>
         </Reveal>
@@ -38,7 +38,7 @@ export function Desserts() {
           {desserts.map((d, i) => (
             <li key={d.name}>
               <Reveal className="h-full" delay={i * 0.05}>
-                <article className="flex h-full flex-col overflow-hidden rounded-[2rem] border-[3px] border-white bg-white shadow-card">
+                <article className="flex h-full flex-col overflow-hidden rounded-[2rem] border-[3px] border-blush-strong bg-white shadow-card">
                   <Image
                     src={d.src}
                     alt={d.alt}
@@ -47,8 +47,8 @@ export function Desserts() {
                     placeholder="blur"
                   />
                   <div className="flex flex-1 flex-col gap-3 p-5">
-                    <h3 className="text-xl leading-tight font-black text-choco">{d.name}</h3>
-                    <p className="text-choco-soft">{d.detail}</p>
+                    <h3 className="text-xl leading-tight font-black text-ink">{d.name}</h3>
+                    <p className="text-ink-soft">{d.detail}</p>
                     <p className="inline-flex w-fit items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-sm font-extrabold text-bubblegum-deep">
                       <CalendarClock className="size-4" aria-hidden="true" />
                       Por encargo
@@ -70,7 +70,7 @@ export function Desserts() {
 
           <li>
             <Reveal className="h-full" delay={0.1}>
-              <article className="flex h-full flex-col items-center justify-center gap-4 rounded-[2rem] border-[3px] border-white bg-bubblegum p-6 text-center text-white shadow-card">
+              <article className="flex h-full flex-col items-center justify-center gap-4 rounded-[2rem] bg-bubblegum-fill p-6 text-center text-white shadow-card">
                 <Image src={mascota} alt="" sizes="96px" className="w-20 -rotate-6" />
                 <h3 className="font-display text-3xl leading-tight">¿Evento o pedido grande?</h3>
                 <p className="font-bold">

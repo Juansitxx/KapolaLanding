@@ -3,7 +3,7 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
 
 const btn =
-  "grid size-11 place-items-center rounded-full bg-white text-bubblegum-deep shadow-[0_2px_0_#f1a7c8] transition-[transform,box-shadow,color] duration-150 ease-(--ease-out) active:translate-y-0.5 active:shadow-none disabled:opacity-40 disabled:active:translate-y-0";
+  "grid size-11 place-items-center rounded-full border border-blush-strong bg-white text-bubblegum-deep transition-[transform,background-color,color] duration-150 ease-(--ease-out) active:scale-95 disabled:opacity-40 disabled:active:scale-100";
 
 export function QuantityStepper({
   value,
@@ -25,7 +25,7 @@ export function QuantityStepper({
     <div
       role="group"
       aria-label={`Cantidad de ${label}`}
-      className="inline-flex items-center gap-1 rounded-full bg-blush p-1"
+      className="inline-flex items-center gap-1 rounded-full bg-blush-strong p-1"
     >
       <button
         type="button"
@@ -40,7 +40,7 @@ export function QuantityStepper({
           <Minus className="size-4" aria-hidden="true" />
         )}
       </button>
-      <output aria-live="polite" className="w-7 text-center text-lg font-black text-choco tabular-nums">
+      <output aria-live="polite" className="w-7 text-center text-lg font-black text-ink tabular-nums">
         {value}
       </output>
       <button

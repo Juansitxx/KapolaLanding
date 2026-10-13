@@ -26,10 +26,10 @@ const moments = [
 
 export function About() {
   return (
-    <section id="nosotros" className="relative overflow-hidden bg-blush px-4 py-20 sm:px-6 md:py-28">
+    <section id="nosotros" className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
         <Reveal className="relative order-last mx-auto w-full max-w-md md:order-first">
-          <figure className="-rotate-2 overflow-hidden rounded-[2rem] border-[6px] border-white bg-white shadow-pop">
+          <figure className="-rotate-2 overflow-hidden rounded-[2rem] border-[6px] border-blush-strong bg-white shadow-pop">
             <Image
               src={premio}
               alt="Juan Calderón y Laura Lasso sosteniendo el cheque del premio de emprendimiento de la Alcaldía de Ibagué"
@@ -37,7 +37,7 @@ export function About() {
               className="aspect-[6/5] w-full object-cover"
               placeholder="blur"
             />
-            <figcaption className="px-4 py-3 text-center text-sm font-bold text-choco-soft">
+            <figcaption className="px-4 py-3 text-center text-sm font-bold text-ink-soft">
               Estímulos Municipales de Juventudes 2026, línea Potencia tu Emprendimiento
             </figcaption>
           </figure>
@@ -45,7 +45,7 @@ export function About() {
             {moments.map((m, i) => (
               <figure
                 key={m.caption}
-                className={`relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-card ${
+                className={`relative overflow-hidden rounded-3xl border-4 border-blush-strong bg-white shadow-card ${
                   i % 2 ? "-rotate-2" : "rotate-2"
                 }`}
               >
@@ -66,7 +66,7 @@ export function About() {
 
         <Reveal>
           <h2 className="candy-title text-5xl sm:text-6xl">Hecho con todo el corazón</h2>
-          <div className="mt-8 space-y-4 text-lg leading-relaxed text-choco">
+          <div className="mt-8 space-y-4 text-lg leading-relaxed text-ink">
             <p>
               Kapola nació en 2024 en Ibagué, cuando Juan Calderón y Laura Lasso decidieron
               convertir su antojo favorito en un emprendimiento: galletas gorditas, doraditas por

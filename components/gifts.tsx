@@ -34,11 +34,11 @@ const occasions = ["Cumpleaños", "San Valentín", "Día de la Madre", "Amor y a
 
 export function Gifts() {
   return (
-    <section id="regalos" className="relative overflow-hidden bg-blush-strong px-4 py-20 sm:px-6 md:py-28">
+    <section id="regalos" className="relative overflow-hidden bg-blush px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
         <Reveal className="text-center lg:text-left">
           <h2 className="candy-title text-5xl sm:text-6xl">Hazlo un regalo</h2>
-          <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-choco lg:mx-0">
+          <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-ink lg:mx-0">
             Pide tu Caja x4 de galletas grandes y le ponemos una tarjeta con tu mensaje, sin costo
             extra. Tú pones las palabras bonitas (o el chiste interno), nosotros las galletas.
           </p>
@@ -47,7 +47,7 @@ export function Gifts() {
             {occasions.map((o) => (
               <li
                 key={o}
-                className="rounded-full bg-white px-3 py-1 text-sm font-bold text-bubblegum-deep"
+                className="rounded-full bg-blush-strong px-3 py-1 text-sm font-bold text-bubblegum-deep"
               >
                 {o}
               </li>
@@ -65,7 +65,7 @@ export function Gifts() {
             <li key={g.caption}>
               <Reveal delay={i * 0.05}>
                 <figure
-                  className={`relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-card ${
+                  className={`relative overflow-hidden rounded-3xl border-4 border-blush-strong bg-white shadow-card ${
                     i % 2 ? "-rotate-2 sm:-translate-y-4" : "rotate-2"
                   }`}
                 >

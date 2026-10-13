@@ -44,7 +44,7 @@ const info = [
 
 export function Contact() {
   return (
-    <section id="contacto" className="bg-blush-strong px-4 py-20 sm:px-6 md:py-28">
+    <section id="contacto" className="bg-blush px-4 py-20 sm:px-6 md:py-28">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <Reveal className="text-center lg:sticky lg:top-28 lg:self-start lg:text-left">
           <Image
@@ -89,16 +89,16 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <dl className="divide-y-2 divide-dashed divide-bubblegum-soft/40 rounded-[2rem] border-[3px] border-white bg-background px-5 shadow-pop sm:px-8">
+          <dl className="divide-y-2 divide-dashed divide-bubblegum-soft/40 rounded-[2rem] border-[3px] border-blush-strong bg-background px-5 shadow-pop sm:px-8">
             {info.map(({ icon: Icon, title, text }) => (
               <div key={title} className="relative py-5 pl-16 sm:py-6 sm:pl-[4.25rem]">
-                <dt className="text-lg font-black text-choco">
+                <dt className="text-lg font-black text-ink">
                   <span className="absolute top-5 left-0 grid size-12 place-items-center rounded-2xl bg-cream text-bubblegum-deep sm:top-6">
                     <Icon className="size-6" aria-hidden="true" />
                   </span>
                   {title}
                 </dt>
-                <dd className="mt-1 text-choco-soft">{text}</dd>
+                <dd className="mt-1 text-ink-soft">{text}</dd>
               </div>
             ))}
           </dl>
