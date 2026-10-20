@@ -11,6 +11,12 @@ export const site = {
   city: "Ibagué",
 } as const;
 
+// Vercel expone el dominio de produccion en tiempo de build; en local cae al dev server
+export function baseUrl() {
+  const host = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  return host ? `https://${host}` : "http://localhost:3000";
+}
+
 export function formatCOP(value: number) {
   return `$${Math.round(value)
     .toString()

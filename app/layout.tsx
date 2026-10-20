@@ -3,7 +3,7 @@ import { Nunito } from "next/font/google";
 
 import { Analytics } from "@vercel/analytics/next";
 
-import { site } from "@/lib/site";
+import { baseUrl, site } from "@/lib/site";
 import "./globals.css";
 
 // Provisional: al llegar los archivos de Hug Me Tight y Branding con licencia web se declaran
@@ -17,10 +17,8 @@ const nunito = Nunito({
 const description =
   "Galletas artesanales y postres en Ibagué con domicilio. Arma tu pedido y envíalo por WhatsApp. El sabor que llena tu corazón.";
 
-const productionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-
 export const metadata: Metadata = {
-  metadataBase: new URL(productionUrl ? `https://${productionUrl}` : "http://localhost:3000"),
+  metadataBase: new URL(baseUrl()),
   title: "Kapola · Galletas artesanales en Ibagué",
   description,
   openGraph: {
@@ -39,12 +37,26 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Bakery",
+  "@id": `${baseUrl()}/#kapola`,
   name: site.name,
   slogan: site.slogan,
+  description,
+  url: baseUrl(),
+  logo: `${baseUrl()}/icon.png`,
+  image: `${baseUrl()}/opengraph-image.jpg`,
   telephone: site.whatsappDisplay,
   areaServed: { "@type": "City", name: "Ibagué" },
   address: { "@type": "PostalAddress", addressLocality: "Ibagué", addressCountry: "CO" },
-  openingHours: "Mo-Sa 09:00-20:00",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:00",
+      closes: "20:00",
+    },
+  ],
+  servesCuisine: "Repostería",
+  currenciesAccepted: "COP",
   sameAs: [site.instagramUrl, site.tiktokUrl, site.facebookUrl],
   priceRange: "$",
 };

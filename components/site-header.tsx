@@ -1,15 +1,10 @@
 import { BrandMark } from "@/components/brand-mark";
+import { MobileNav } from "@/components/mobile-nav";
+import { navLinks } from "@/components/nav-links";
 import { WhatsAppIcon } from "@/components/icons";
 import { greetingWhatsappUrl } from "@/lib/site";
 import { TrackedLink } from "@/components/tracked-link";
 
-const links = [
-  { href: "#menu", label: "Menú" },
-  { href: "#postres", label: "Postres" },
-  { href: "#regalos", label: "Regalos" },
-  { href: "#preguntas", label: "Preguntas" },
-  { href: "#contacto", label: "Contacto" },
-];
 
 export function SiteHeader() {
   return (
@@ -22,7 +17,7 @@ export function SiteHeader() {
         {/* Centrado respecto a la barra: logo y WhatsApp miden parecido, los huecos quedan simétricos */}
         <nav aria-label="Secciones" className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
           <ul className="flex items-center gap-1 font-bold text-ink">
-            {links.map((l) => (
+            {navLinks.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
@@ -35,17 +30,20 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <TrackedLink
-          event="whatsapp_click"
-          source="header"
-          href={greetingWhatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="candy-btn h-11 px-4 text-sm sm:px-5 sm:text-base"
-        >
-          <WhatsAppIcon className="size-5" />
-          <span>WhatsApp</span>
-        </TrackedLink>
+        <div className="flex items-center gap-1">
+          <MobileNav />
+          <TrackedLink
+            event="whatsapp_click"
+            source="header"
+            href={greetingWhatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="candy-btn h-11 px-4 text-sm sm:px-5 sm:text-base"
+          >
+            <WhatsAppIcon className="size-5" />
+            <span className="max-[400px]:sr-only">WhatsApp</span>
+          </TrackedLink>
+        </div>
       </div>
     </header>
   );

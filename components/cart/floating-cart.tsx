@@ -1,13 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 import { ShoppingBag } from "lucide-react";
 
 import { formatCOP } from "@/lib/site";
 import { useCart } from "@/components/cart/cart-provider";
-import { OrderDialog } from "@/components/cart/order-dialog";
+// El formulario del pedido es el componente mas pesado y no hace falta hasta que
+// hay algo en el carrito: fuera del arranque para no retrasar el pintado del hero.
+const OrderDialog = dynamic(() =>
+  import("@/components/cart/order-dialog").then((mod) => mod.OrderDialog),
+);
 
 export function FloatingCart() {
   const { count, subtotal, addedTick } = useCart();
@@ -58,7 +63,7 @@ export function FloatingCart() {
         )}
       </AnimatePresence>
 
-      <OrderDialog open={open} onOpenChange={setOpen} />
+      {(count > 0 || open) && <OrderDialog open={open} onOpenChange={setOpen} />}
     </>
   );
 }
