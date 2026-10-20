@@ -8,6 +8,8 @@ import { Bike, Gift, Milk, Trash2 } from "lucide-react";
 import { track } from "@vercel/analytics";
 
 import mascota from "@/public/images/mascota.png";
+import galleta from "@/public/images/galleta.png";
+import laura from "@/public/images/laura.png";
 import {
   Dialog,
   DialogContent,
@@ -98,7 +100,10 @@ export function OrderDialog({
 
         {empty ? (
           <div className="px-5 pt-4 pb-8 text-center">
-            <p className="text-lg font-bold text-ink">Tu pedido está vacío… y la galleta está triste.</p>
+            <Image src={galleta} alt="" sizes="112px" className="mx-auto w-28 opacity-80" />
+            <p className="mt-4 text-lg font-bold text-ink">
+              Tu pedido está vacío… y la galleta está triste.
+            </p>
             <button
               type="button"
               className="candy-btn mt-5 h-12 px-6"
@@ -315,17 +320,25 @@ export function OrderDialog({
           </button>
 
           {showFallback && (
-            <p role="status" className="text-center text-sm font-bold text-bubblegum-deep">
-              ¡Listo! Terminamos de cuadrar todo por WhatsApp.{" "}
-              <a
-                href={orderUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline decoration-2"
-              >
-                ¿No se abrió el chat? Toca aquí
-              </a>
-            </p>
+            <m.div
+              initial={{ opacity: 0, transform: "translateY(10px)" }}
+              animate={{ opacity: 1, transform: "translateY(0px)" }}
+              transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+              className="flex items-center gap-3 rounded-2xl bg-blush px-4 py-3 text-left"
+            >
+              <Image src={laura} alt="" sizes="72px" className="w-16 shrink-0" />
+              <p role="status" className="text-sm font-bold text-bubblegum-deep">
+                ¡Listo! Terminamos de cuadrar todo por WhatsApp.{" "}
+                <a
+                  href={orderUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-2"
+                >
+                  ¿No se abrió el chat? Toca aquí
+                </a>
+              </p>
+            </m.div>
           )}
         </form>
       </DialogContent>

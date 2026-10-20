@@ -34,7 +34,7 @@ const occasions = ["Cumpleaños", "San Valentín", "Día de la Madre", "Amor y a
 
 export function Gifts() {
   return (
-    <section id="regalos" className="relative overflow-hidden bg-blush px-4 py-20 sm:px-6 md:py-28">
+    <section id="regalos" className="relative overflow-hidden bg-blush section-shell">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
         <Reveal className="text-center lg:text-left">
           <h2 className="candy-title text-5xl sm:text-6xl">Hazlo un regalo</h2>

@@ -10,7 +10,7 @@ const steps = [
 
 export function MenuSection() {
   return (
-    <section id="menu" className="relative bg-blush px-4 py-20 sm:px-6 md:py-28">
+    <section id="menu" className="relative bg-blush section-shell">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="candy-title text-5xl sm:text-6xl">El menú</h2>

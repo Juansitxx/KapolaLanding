@@ -44,7 +44,7 @@ const info = [
 
 export function Contact() {
   return (
-    <section id="contacto" className="bg-blush px-4 py-20 sm:px-6 md:py-28">
+    <section id="contacto" className="bg-blush section-shell">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <Reveal className="text-center lg:sticky lg:top-28 lg:self-start lg:text-left">
           <Image

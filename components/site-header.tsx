@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-import logo from "@/public/images/logo.png";
+import { BrandMark } from "@/components/brand-mark";
 import { WhatsAppIcon } from "@/components/icons";
 import { greetingWhatsappUrl } from "@/lib/site";
 import { TrackedLink } from "@/components/tracked-link";
@@ -16,9 +14,9 @@ const links = [
 export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-6">
-      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 rounded-full border border-blush-strong bg-white pr-2 pl-4 shadow-card sm:pl-6">
+      <div className="relative mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-3 rounded-full border border-blush-strong bg-white pr-2 pl-4 shadow-card sm:pl-6">
         <a href="#inicio" className="shrink-0 rounded-full">
-          <Image src={logo} alt="Kapola" className="h-11 w-auto" sizes="120px" />
+          <BrandMark />
         </a>
 
         {/* Centrado respecto a la barra: logo y WhatsApp miden parecido, los huecos quedan simétricos */}

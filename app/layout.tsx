@@ -1,20 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Lobster, Nunito } from "next/font/google";
+import { Nunito } from "next/font/google";
 
 import { Analytics } from "@vercel/analytics/next";
 
 import { site } from "@/lib/site";
 import "./globals.css";
 
-// Provisionales: al llegar los archivos de Hug Me Tight y Branding con licencia web se declaran
+// Provisional: al llegar los archivos de Hug Me Tight y Branding con licencia web se declaran
 // con next/font/local como --font-hug-me-tight y --font-branding, que globals.css ya prefiere.
-const lobster = Lobster({
-  variable: "--font-lobster",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
 const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin"],
@@ -40,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#fcfbfa",
 };
 
 const jsonLd = {
@@ -58,7 +51,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es-CO" className={`${lobster.variable} ${nunito.variable} antialiased`}>
+    <html lang="es-CO" className={`${nunito.variable} antialiased`}>
       <body className="min-h-dvh">
         <script
           type="application/ld+json"

@@ -25,7 +25,7 @@ const desserts: { name: string; detail: string; src: StaticImageData; alt: strin
 
 export function Desserts() {
   return (
-    <section id="postres" className="bg-background px-4 py-20 sm:px-6 md:py-28">
+    <section id="postres" className="bg-background section-shell">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="candy-title text-5xl sm:text-6xl">Postres por encargo</h2>
@@ -72,7 +72,7 @@ export function Desserts() {
             <Reveal className="h-full" delay={0.1}>
               <article className="flex h-full flex-col items-center justify-center gap-4 rounded-[2rem] bg-bubblegum-fill p-6 text-center text-white shadow-card">
                 <Image src={mascota} alt="" sizes="96px" className="w-20 -rotate-6" />
-                <h3 className="font-display text-3xl leading-tight">¿Evento o pedido grande?</h3>
+                <h3 className="font-display font-black text-3xl leading-tight">¿Evento o pedido grande?</h3>
                 <p className="font-bold">
                   Escríbenos con la fecha y la cantidad y lo armamos contigo.
                 </p>

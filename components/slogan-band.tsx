@@ -1,15 +1,16 @@
-import { Swoosh } from "@/components/icons";
+import Image from "next/image";
+
+import slogan from "@/public/images/slogan.png";
 import { Reveal } from "@/components/reveal";
 import { site } from "@/lib/site";
 
+// El slogan va rotulado en Hug Me Tight, la fuente oficial: se usa el lettering
+// del manual en vez de componerlo con la display provisional.
 export function SloganBand() {
   return (
-    <section aria-label="Eslogan de Kapola" className="bg-bubblegum px-4 py-16 sm:px-6 md:py-20">
-      <Reveal className="mx-auto max-w-4xl text-center">
-        <p className="font-display text-4xl leading-tight text-white sm:text-5xl md:text-6xl">
-          {site.slogan}
-        </p>
-        <Swoosh className="mx-auto mt-5 h-4 w-48 text-cream sm:w-64" />
+    <section aria-label="Eslogan de Kapola" className="relative overflow-hidden bg-bubblegum px-4 py-16 sm:px-6 md:py-20">
+      <Reveal className="relative mx-auto flex max-w-4xl justify-center">
+        <Image src={slogan} alt={site.slogan} sizes="(min-width: 768px) 640px, 85vw" className="w-full max-w-md" />
       </Reveal>
     </section>
   );

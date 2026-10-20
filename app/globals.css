@@ -10,6 +10,18 @@
   --color-bubblegum-soft: #db7d97;
   --color-cream: #ffeb99;
 
+  /* Cuarto color, presente en los aplicativos del manual (pp. 22-23): crema de la
+     camiseta y el tote. No figura en la lámina de color, pero es el que sostiene
+     el rosa sobre fondos cálidos. Contraste medido sobre -dough-soft: ink 10.8:1,
+     ink-soft 6.0:1, bubblegum-fill 3.8:1 (solo títulos). El rosa claro da 2.9:1
+     y el blanco 1.8:1: ninguno de los dos va sobre este fondo. */
+  --color-dough: #dcd783;
+  --color-dough-soft: #f3e4c8;
+
+  /* Fondo de las láminas del manual: off-white, no blanco puro. El blanco queda
+     para las tarjetas, como dice la p. 14. */
+  --color-paper: #fcfbfa;
+
   /* Derivados de UI: el manual no define oscuro, tintes ni estados interactivos.
      Todos salen del rosa oficial y cumplen contraste AA (ver docs/).
      -fill: rellenos con texto blanco. -deep: texto e íconos sobre fondos claros. */
@@ -21,7 +33,11 @@
   --color-ink-soft: #7a4455;
 
   /* Las oficiales (Hug Me Tight / Branding) entran al definir sus variables en layout.tsx */
-  --font-display: var(--font-hug-me-tight, var(--font-lobster)), "Brush Script MT", cursive;
+  /* Hasta que lleguen los archivos de Hug Me Tight, las frases destacadas caen en
+     la sans: Lobster no se parece al lettering del manual y mentía sobre la marca.
+     Los usos de font-display llevan font-black mientras tanto; al declarar la
+     fuente real hay que quitarles ese peso. */
+  --font-display: var(--font-hug-me-tight, var(--font-branding, var(--font-nunito))), ui-rounded, sans-serif;
   --font-sans: var(--font-branding, var(--font-nunito)), ui-rounded, "Segoe UI", sans-serif;
 
   --shadow-card: 0 10px 24px -18px rgb(84 24 44 / 0.35);
@@ -52,7 +68,7 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: var(--color-paper);
   --foreground: var(--color-ink);
   --popover: #ffffff;
   --popover-foreground: var(--color-ink);
@@ -200,6 +216,24 @@
   font-variant-numeric: tabular-nums;
   line-height: 0.85;
   color: var(--color-bubblegum);
+}
+
+/* Ritmo vertical de las secciones: un solo sitio donde regular el aire */
+@utility section-shell {
+  padding-inline: 1rem;
+  padding-block: clamp(4rem, 9vw, 7rem);
+
+  @media (width >= 640px) {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* Patrón de galletas de los aplicativos. Va en una capa decorativa aparte
+   (aria-hidden) para no teñir el texto con la opacidad. */
+@utility cookie-field {
+  background-image: url("/images/patron-galletas.png");
+  background-size: 260px;
+  opacity: 0.14;
 }
 
 @layer base {

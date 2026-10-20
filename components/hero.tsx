@@ -16,7 +16,7 @@ export function Hero() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-70 [background-image:radial-gradient(#eec6d1_1.5px,transparent_1.5px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
+        className="cookie-field pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
       />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[1.05fr_1fr]">
@@ -26,7 +26,7 @@ export function Hero() {
             Ganadores del Portafolio de Estímulos Municipales de Juventudes 2026
           </p>
 
-          <h1 className="mt-6 font-display text-5xl leading-[1.08] text-balance text-bubblegum sm:text-6xl lg:text-[4.25rem]">
+          <h1 className="mt-6 font-display font-black text-5xl leading-[1.08] text-balance text-bubblegum sm:text-6xl lg:text-[4.25rem]">
             El sabor que llena tu{" "}
             <span className="relative inline-block">
               corazón
@@ -78,15 +78,15 @@ export function Hero() {
             />
           </div>
 
-          <p className="absolute -top-4 -right-2 rotate-6 animate-pop-in rounded-2xl border-[3px] border-white bg-cream px-4 py-2 font-display text-xl text-ink shadow-card [animation-delay:350ms] sm:-right-6">
+          <p className="absolute -top-4 -right-2 rotate-6 animate-pop-in rounded-2xl border-[3px] border-white bg-cream px-4 py-2 font-display font-black text-xl text-ink shadow-card [animation-delay:350ms] sm:-right-6">
             ¡Recién horneadas!
           </p>
 
-          <div className="absolute -bottom-10 -left-4 w-32 animate-pop-in [animation-delay:150ms] sm:-left-10 sm:w-44">
+          <div className="absolute -bottom-10 -left-4 w-28 animate-pop-in [animation-delay:150ms] sm:-left-10 sm:w-36">
             <Image
               src={mascota}
               alt=""
-              sizes="176px"
+              sizes="144px"
               className="w-full animate-float drop-shadow-xl"
             />
           </div>

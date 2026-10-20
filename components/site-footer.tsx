@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import logo from "@/public/images/logo.png";
-import mascota from "@/public/images/mascota.png";
+import equipo from "@/public/images/equipo-busto-blanco.png";
+import { BrandMark } from "@/components/brand-mark";
 import { WhatsAppIcon } from "@/components/icons";
 import { SocialLinks } from "@/components/social-links";
 import { greetingWhatsappUrl, site } from "@/lib/site";
@@ -11,10 +11,10 @@ export function SiteFooter() {
   return (
     <footer className="bg-bubblegum-fill px-4 pt-12 pb-28 text-white sm:px-6 sm:pb-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
-        {/* Placa blanca: el logo provisional es rosa y no contrasta sobre el footer */}
-        <div className="flex items-center gap-3 rounded-full bg-white px-4 py-2">
-          <Image src={mascota} alt="" sizes="48px" className="w-10" />
-          <Image src={logo} alt="Kapola" sizes="140px" className="h-10 w-auto" />
+        <div className="flex flex-col items-center gap-5 sm:items-start">
+          <BrandMark className="sm:w-[150px]" />
+          {/* Laura, Juan y la mascota en línea blanca, como la franja del membrete */}
+          <Image src={equipo} alt="" sizes="200px" className="w-44" />
         </div>
 
         <p className="text-sm">

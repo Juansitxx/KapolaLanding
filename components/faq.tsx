@@ -47,7 +47,7 @@ const jsonLd = {
 
 export function Faq() {
   return (
-    <section id="preguntas" className="bg-background px-4 py-20 sm:px-6 md:py-28">
+    <section id="preguntas" className="bg-background section-shell">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mx-auto max-w-3xl">
         <Reveal className="text-center">

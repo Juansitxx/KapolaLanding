@@ -55,10 +55,12 @@ export function ProductCard({ product }: { product: Product }) {
         className={cn(
           "relative aspect-[4/3] overflow-hidden",
           product.featured && "sm:aspect-auto sm:min-h-72 sm:w-1/2 lg:w-[55%]",
-          product.imageStyle === "cutout" &&
-            "grid place-items-center bg-blush [background-image:radial-gradient(#eec6d1_2px,transparent_2px)] [background-size:18px_18px]",
+          product.imageStyle === "cutout" && "grid place-items-center bg-blush",
         )}
       >
+        {product.imageStyle === "cutout" && (
+          <div aria-hidden="true" className="cookie-field absolute inset-0" />
+        )}
         {product.imageStyle === "photo" ? (
           <Image
             src={product.image}

@@ -19,10 +19,10 @@ const tiles: Tile[] = [
 
 export function Community() {
   return (
-    <section className="bg-blush px-4 py-20 sm:px-6 md:py-28">
+    <section className="bg-dough-soft section-shell">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="candy-title text-5xl sm:text-6xl">Así se vive Kapola</h2>
+          <h2 className="candy-title text-bubblegum-fill text-5xl sm:text-6xl">Así se vive Kapola</h2>
           <p className="mt-5 text-lg text-ink">
             Ferias, antojos y uno que otro meme. Lo que pasa en nuestras redes, no se queda en
             nuestras redes.
@@ -61,7 +61,7 @@ export function Community() {
                 className="flex h-full min-h-32 flex-col items-center justify-center gap-2 rounded-3xl bg-bubblegum-fill p-4 text-center text-white shadow-card transition hover:-translate-y-1"
               >
                 <InstagramIcon className="size-10" />
-                <span className="font-display text-2xl leading-tight">Síguenos</span>
+                <span className="font-display font-black text-2xl leading-tight">Síguenos</span>
                 <span className="text-sm font-extrabold">{site.instagramHandle}</span>
               </a>
             </Reveal>

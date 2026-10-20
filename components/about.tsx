@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import equipo from "@/public/images/equipo.png";
 import premio from "@/public/images/premio-emprendimiento.jpg";
 import lechonaRun from "@/public/images/lechona-run.jpg";
 import feriaValientes from "@/public/images/feria-valientes.jpg";
@@ -34,7 +35,7 @@ const moments = [
 
 export function About() {
   return (
-    <section id="nosotros" className="relative overflow-hidden bg-background px-4 py-20 sm:px-6 md:py-28">
+    <section id="nosotros" className="relative overflow-hidden bg-background section-shell">
       <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
         <Reveal className="relative order-last mx-auto w-full max-w-md md:order-first">
           <figure className="-rotate-2 overflow-hidden rounded-[2rem] border-[6px] border-blush-strong bg-white shadow-pop">
@@ -92,6 +93,17 @@ export function About() {
               ingredientes y mucho, mucho cariño en cada caja.
             </p>
           </div>
+
+          {/* Retrato oficial del manual: los dueños tal como los dibuja la marca */}
+          <figure className="mt-8 flex items-center gap-4">
+            <Image src={equipo} alt="" sizes="160px" className="w-36 shrink-0" />
+            <figcaption className="text-lg leading-snug font-black text-bubblegum-deep">
+              Laura y Juan,
+              <span className="block text-base font-bold text-ink-soft">
+                los que amasan todo esto
+              </span>
+            </figcaption>
+          </figure>
 
           <ul className="mt-10 grid gap-4 sm:grid-cols-2">
             {promise.map(({ name, text }) => (

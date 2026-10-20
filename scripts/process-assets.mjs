@@ -34,41 +34,6 @@ const crop = (src, left, top, width, height) =>
 const saveJpg = (img, name) =>
   img.jpeg({ quality: 88, mozjpeg: true }).toFile(`${OUT}/${name}.jpg`);
 
-// Quita un fondo de color plano: alfa según distancia al color de fondo y
-// "des-contaminación" del color en los bordes antialiasados.
-async function keyOut(img, bg, { inner = 10, outer = 60 } = {}) {
-  const { data, info } = await img
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  for (let i = 0; i < data.length; i += 4) {
-    const dr = data[i] - bg[0];
-    const dg = data[i + 1] - bg[1];
-    const db = data[i + 2] - bg[2];
-    const dist = Math.sqrt(dr * dr + dg * dg + db * db);
-    const a = Math.min(1, Math.max(0, (dist - inner) / (outer - inner)));
-    if (a > 0 && a < 1) {
-      for (let c = 0; c < 3; c++) {
-        const v = (data[i + c] - bg[c] * (1 - a)) / a;
-        data[i + c] = Math.max(0, Math.min(255, Math.round(v)));
-      }
-    }
-    data[i + 3] = Math.round(a * 255);
-  }
-  return sharp(data, { raw: info });
-}
-
-async function sampleColor(src, x, y) {
-  const { data } = await sharp(src)
-    .extract({ left: x, top: y, width: 6, height: 6 })
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  const avg = [0, 0, 0];
-  for (let i = 0; i < data.length; i += 3)
-    for (let c = 0; c < 3; c++) avg[c] += data[i + c];
-  return avg.map((v) => Math.round(v / (data.length / 3)));
-}
-
 async function circle(src, cx, cy, r, name) {
   const size = r * 2;
   const mask = Buffer.from(
@@ -80,29 +45,71 @@ async function circle(src, cx, cy, r, name) {
     .toFile(`${OUT}/${name}.png`);
 }
 
-// Logo: fondo blanco -> transparente
-{
-  const keyed = await keyOut(sharp("assets/logo/logo.jpg"), [255, 255, 255], {
-    inner: 8,
-    outer: 40,
-  });
-  const buf = await keyed.png().toBuffer();
-  await sharp(buf)
-    .trim({ threshold: 1 })
-    .resize({ width: 1000 })
-    .png({ palette: true, quality: 95 })
-    .toFile(`${OUT}/logo.png`);
+// --- Marca oficial (Manual V1.2026) -------------------------------------
+// Los PNG de assets/marca vienen con canvas sobrante: se recortan al contenido.
+const MARCA = "assets/marca";
+const marca = (n) => sharp(`${MARCA}/PERSONAJES-${n}.png`).trim({ threshold: 1 });
+
+const savePng = (img, name, width) =>
+  img.resize({ width }).png({ palette: true, quality: 95 }).toFile(`${OUT}/${name}.png`);
+
+// El lockup oficial ya trae contorno blanco: funciona igual sobre claro y sobre rosa.
+await savePng(marca("01"), "logo", 1000);
+await savePng(marca("08"), "galleta", 400);
+await savePng(marca("07"), "galleta-crema", 400);
+await savePng(marca("06"), "mascota", 520); // bulldog oficial, reemplaza el recorte del menú
+await savePng(marca("03"), "equipo", 900);
+await savePng(marca("02"), "equipo-busto", 900);
+await savePng(marca("04"), "laura", 520);
+await savePng(marca("05"), "juan", 520);
+
+// Versión en línea blanca de los personajes, como la franja del membrete (p. 22):
+// el trazo rosa pasa a blanco y los rellenos claros se vacían.
+async function aLineaBlanca(img) {
+  const { data, info } = await img.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  for (let i = 0; i < data.length; i += 4) {
+    const esTrazo = data[i] - data[i + 2] > 20 && data[i + 3] > 40;
+    if (esTrazo) {
+      data[i] = data[i + 1] = data[i + 2] = 255;
+    } else {
+      data[i + 3] = 0;
+    }
+  }
+  return sharp(data, { raw: info });
 }
 
-// Mascota: recortada del menú gráfico, sin el fondo rosa pastel
+await savePng(await aLineaBlanca(marca("02")), "equipo-busto-blanco", 900);
+
+// Lettering del slogan en Hug Me Tight, recortado del lockup y pasado a blanco
+// para la banda rosa. Nativo ~430 px: se dobla para pantallas densas. Cuando el
+// diseñador entregue el vector, esto se sustituye por un SVG.
+await sharp(
+  await (await aLineaBlanca(sharp(`${OUT}/logo.png`).extract({ left: 545, top: 335, width: 455, height: 139 })))
+    .png()
+    .toBuffer(),
+)
+  .trim({ threshold: 1 })
+  .resize({ width: 860, kernel: "lanczos3" })
+  .png()
+  .toFile(`${OUT}/slogan.png`);
+
+// Tile del patrón de galletas de los aplicativos (camiseta y membrete, pp. 22-23).
+// Se teje con background-repeat; la opacidad la pone el CSS.
 {
-  const bg = await sampleColor(MENU, 455, 1050);
-  const keyed = await keyOut(crop(MENU, 440, 1040, 205, 278), bg, {
-    inner: 14,
-    outer: 48,
-  });
-  const buf = await keyed.png().toBuffer();
-  await sharp(buf).trim({ threshold: 1 }).png().toFile(`${OUT}/mascota.png`);
+  const TILE = 300;
+  const cookie = async (size, deg) =>
+    marca("08")
+      .resize({ width: size })
+      .rotate(deg, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .png()
+      .toBuffer();
+  await sharp({ create: { width: TILE, height: TILE, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
+    .composite([
+      { input: await cookie(118, -8), left: 6, top: 10 },
+      { input: await cookie(86, 14), left: 178, top: 162 },
+    ])
+    .png()
+    .toFile(`${OUT}/patron-galletas.png`);
 }
 
 // Hero
@@ -148,28 +155,29 @@ await saveJpg(crop(GRID, 247, 843, 245, 325), "meme-uno");
 await saveJpg(crop(GRID, 247, 1215, 245, 282), "a-que-sabe-colombia");
 await saveJpg(crop(GRID, 494, 1215, 245, 282), "meme-perro");
 
-// Íconos y Open Graph (app/)
+// Íconos y Open Graph (app/): isotipo de galleta y lockup oficial
 {
-  const BLUSH = "#FDE4EE";
-  const mascot = (size) =>
-    sharp(`${OUT}/mascota.png`)
+  // Lienzo del tote del manual (p. 23): el rosa del logo y de los personajes contrasta.
+  const LONA = "#f3e4c8";
+  const cookie = (size) =>
+    sharp(`${OUT}/galleta.png`)
       .resize({ width: size, height: size, fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
       .png()
       .toBuffer();
 
-  // La mascota mide ~280 px: a 512 solo se agranda y pesa ~400 KB. 192 px con paleta basta.
-  await sharp(await mascot(192)).png({ palette: true }).toFile("app/icon.png");
+  await sharp(await cookie(192)).png({ palette: true }).toFile("app/icon.png");
 
-  await sharp({ create: { width: 180, height: 180, channels: 4, background: BLUSH } })
-    .composite([{ input: await mascot(150), gravity: "center" }])
+  await sharp({ create: { width: 180, height: 180, channels: 4, background: LONA } })
+    .composite([{ input: await cookie(132), gravity: "center" }])
     .png()
     .toFile("app/apple-icon.png");
 
-  const logo = await sharp(`${OUT}/logo.png`).resize({ width: 640 }).png().toBuffer();
-  await sharp({ create: { width: 1200, height: 630, channels: 4, background: BLUSH } })
+  const logo = await sharp(`${OUT}/logo.png`).resize({ width: 560 }).png().toBuffer();
+  const equipo = await sharp(`${OUT}/equipo.png`).resize({ height: 430 }).png().toBuffer();
+  await sharp({ create: { width: 1200, height: 630, channels: 4, background: LONA } })
     .composite([
-      { input: logo, left: 70, top: 170 },
-      { input: await mascot(460), left: 710, top: 90 },
+      { input: logo, left: 80, top: 160 },
+      { input: equipo, left: 740, top: 110 },
     ])
     .jpeg({ quality: 90 })
     .toFile("app/opengraph-image.jpg");
