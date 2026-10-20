@@ -100,7 +100,7 @@ export function About() {
             <figcaption className="text-lg leading-snug font-black text-bubblegum-deep">
               Laura y Juan,
               <span className="block text-base font-bold text-ink-soft">
-                los que amasan todo esto
+                los creadores.. y el verdadero supervisor
               </span>
             </figcaption>
           </figure>
