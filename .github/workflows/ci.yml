@@ -16,4 +16,5 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint
+      - run: node scripts/ci-placeholders.mjs # las fotos no están en el repo
       - run: npm run build # also type-checks
